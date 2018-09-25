@@ -1,0 +1,164 @@
+/*navbar*/
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: black;
+    color: #FFF;
+    padding: 1% 0;
+    font-size: 0.8em;
+    border:0;
+
+}
+
+.navbar-brand{
+    float: left;
+    min-height: 55px;
+    padding: 0 10px 5px;
+}
+
+.navbar-inverse .navbar-nav .active a, .navbar-inverse .navbar-nav .active a:focus,
+.navbar-inverse .navbar-nav .active a:hover {
+    color: #FFF;
+    background-color: black;
+}
+
+.navbar-inverse .navbar-nav li a{
+    color: lightblue;
+}
+/*navbar*/
+
+/*carousel*/
+.btn-default
+{
+    font-size: 15px;
+}
+.carousel-caption{
+    top:50%;
+    transform: translateY(-50%);
+    text-transform: uppercase;
+
+
+}
+@media (max-width: 600px){
+    .carousel-caption {
+        display: none;
+    }
+
+    #icon {
+        max-width: 150px;
+    }
+
+    h2 {
+        font-size: 1.9em;
+    }
+}
+#header{
+
+    padding-bottom: 30px;
+    width: 250px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 18px;
+    bottom: auto;
+}
+
+
+#bt1{
+
+    padding: 20px;
+    width: 100px;
+    font: bold;
+    background: rgba(0,0,0,0.5);
+    border-radius: 20px ;
+}
+
+#icon{
+    max-width: 200px;
+    margin: 1% auto;
+}
+
+#capH{
+    color: black;
+    transform: translateY(-50%);
+    text-transform: uppercase;
+
+}
+
+ #capK  {
+     color: black;
+
+}
+
+
+
+/*carousel*/
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+}
+
+#footname{
+    color: grey;
+}
+#tweet{
+    color: lightblue;
+}
+
+/*membership*/
+#plat{
+    background: blue;
+    color: black;
+}
+#req{
+    padding:0 5px 5px;
+    background-color: grey;
+    color: black;
+    background-blend-mode: soft-light;
+    border-radius: 5px;
+}
+
+#mem {
+    color: white;
+}
+
+#subs{
+    padding:0 5px 5px;
+    background-color: green;
+    color: black;
+    background-blend-mode: soft-light;
+    border-radius: 5px;
+
+}
+
+#plan {
+    border-radius: 10px;
+
+}
+
+#flat{
+    background-color: lightblue;
+    max-width:900px;
+    border-width: 10px;
+    border-color: black;
+}
+#image {
+    max-width: 500px;
+    max-height: 500px;
+
+
+}
+#panel{
+    max-width: 600px;
+    z-index: 1;
+    box-shadow: 5px 10px #888888;
+}
+
+#grad1 {
+    height: 100%;
+    background-color: black;
+}
+
