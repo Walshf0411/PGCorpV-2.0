@@ -5,10 +5,13 @@ from General.general import getHash
 # Create your models here.
 class Flat(models.Model):
 	'''The basic linking of the user model and the flats'''
+	# The user the flat is posted by.
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class FlatDetails(models.Model):
 	'''This is a seperate table as the details can be comfortably increased in future'''
+	# The id of the flat for which we have to store the details
+	flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
 	LOCATION_CHOICES = (
 		('Mumbai', 'Mumbai'), 
 		('Pune', 'Pune'), 

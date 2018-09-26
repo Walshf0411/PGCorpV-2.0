@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from .forms import UserSignupForm
 from django.views.generic.edit import CreateView
 
@@ -17,4 +17,6 @@ class UserSignupView(CreateView):
 
 class UserLoginView(LoginView):
 	template_name = 'Accounts/login.html'
-	success_url = '/'
+
+class UserLogoutView(LogoutView):
+	pass
