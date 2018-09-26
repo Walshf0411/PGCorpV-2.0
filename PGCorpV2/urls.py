@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from General.views import LandingPage
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', LandingPage.as_view(),name='land_page'),
     url(r'^accounts/', include('Accounts.urls')),
     url(r'^general/', include('General.urls')),
     url(r'^flats/', include('Flats.urls')),
