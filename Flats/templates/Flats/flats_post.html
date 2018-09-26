@@ -2,5 +2,8 @@
 {% block title %}Post a flat for free{% endblock %}
 
 {% block content %}
-hulla hull
+<form method="POST" action="{% url 'post' %}">{% csrf_token %}
+	{{form.as_p}}
+	<button type="submit">Submit</button>
+</form>
 {% endblock %}
