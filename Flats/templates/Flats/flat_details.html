@@ -1,0 +1,23 @@
+{% extends 'Accounts/base.html' %}
+{% block title %}{{object.slug}}{% endblock %}
+
+{% block cssfiles %}
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'General/flat_details.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="card">
+		<div class="card-body">
+		<div class="card-title">
+			<h3>{{object.title}}</h3>
+		</div>
+		<div class="card-text">
+			<strong>Location: </strong>{{object.location}}<br>
+			<strong>Price: </strong>&#x20b9; {{object.rent}}<br>
+			<strong>Posted By: </strong>{{user}}<br>
+			<button type="submit" class="btn btn-success">Book</button>
+		</div>
+		</div>
+	</div>
+{% endblock %}
