@@ -33,3 +33,7 @@ class FlatDetails(models.Model):
 		self.slug = slugify(self.title)
 		super().save(args, kwargs)
 
+	def get_absolute_url(self):
+		base_url = "/flats/{}/{}/" # flats/<hash>/<slug>/
+		return base_url.format(self.hash, self.slug)
+

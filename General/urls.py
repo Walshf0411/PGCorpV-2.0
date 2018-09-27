@@ -2,5 +2,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-	url(r'$', views.LandingPage.as_view(), name="something"),
+	url(r'search_suggestions/$', views.AjaxBasedSearch.as_view(), name='ajax-search'),
+	#url(r'search/$', views.Search.as_view(), name='search'),
 ]
