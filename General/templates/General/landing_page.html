@@ -1,3 +1,92 @@
 {% extends 'Accounts/base.html' %}
+
 {% block title %}Home{% endblock %}
-{% block content %}{% endblock %}
+
+{% block cssfiles %}
+<style type="text/css">
+	body,html{
+		height: 100%;
+		margin: 0;
+		line-height:1.8em;
+		font-size: 16px;
+		font-weight: 400;
+		font-family: "Arial","helvetica","Sans-serif";
+		color:#666;
+	}
+
+	.pimg1
+	{
+		background-image: url('../../static/homepage/imgPG/home2PG.jpg');
+		min-height:100%;
+		position:relative;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+
+		background-blend-mode:screen;
+	}
+
+	.section 
+	{
+		text-align: center;
+		padding : 50px 80px;
+	}
+
+	.section-light{
+		background-color: #f4f4f4;
+		color:#666;
+	}
+
+	.section-dark{
+		background-color: #282e34;
+		color:#fff;
+	}
+
+	.ptext{
+		position: absolute;
+		top:50%;
+		width: 100%;
+		text-align: center;
+		color:#02010c;
+		font-size:27px;
+		letter-spacing:8px;
+		text-transform: uppercase;
+	}
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+<body>
+	<div class="pimg1">
+		<div class="ptext">
+			<span class="border">
+				PG CORP 
+			</span>
+		</div>
+	</div>
+
+	<section class="section section-light">
+		<h2> Section one </h2>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+	</section>
+
+	<div class="pimg2">
+		<div class="ptext">
+			<span class="border">
+				LOREM IPSUM 
+			</span>
+		</div>
+	</div>
+
+
+{% endblock %}
