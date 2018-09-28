@@ -18,4 +18,3 @@ class AjaxBasedSearch(View):
 			'results': results,
 		}
 		return JsonResponse(json)
-

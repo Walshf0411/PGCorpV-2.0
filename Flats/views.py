@@ -33,5 +33,7 @@ class FlatDetailsView(DetailView):
 		return flat
 
 class FlatsListView(ListView):
+	'''List of all the flats'''
 	model = FlatDetails
 	template_name = "Flats/flats_list.html"
+	context_object_name = "flats"
