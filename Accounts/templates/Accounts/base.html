@@ -9,12 +9,95 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block cssfiles %}
     {% endblock %}
     <style type="text/css">
     	.results-dropdown{
     		display: none;
     	}
+    	.container1 {
+    background-color: #f8f9fa;
+    width: 100%;
+    border: 0;
+    
+    position: relative;
+}
+.box{
+    box-sizing: border-box;
+    width: 25%;
+    border:0; 
+    float: left;
+}
+
+.box5{
+    width: 100%;
+}
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+li{
+    text-decoration: none;
+    list-style-type: none;
+    text-align: center;
+    margin: 2px 5px;
+}
+li{
+    text-decoration: none;
+    list-style-type: none;
+    margin: 5px;
+    float: left;
+}
+@media screen and (max-width: 428px){
+    .container{
+        display: none;
+        border:none;
+    }
+    .box5{
+        display: block;
+    }
+}
+
     </style>
 </head>
 <!-- Navbar code goes here -->
@@ -80,6 +163,48 @@
 {% block content %}
 {% endblock %}
 </body>
+
+<footer>
+	
+<div class="container1">
+	<div class="box1 box">links
+		<ul>
+		<li>About PG Corp</li>
+		<li>Privacy Policy</li>
+		<li>Terms of Use</li>	
+		<li>FAQs</li>
+		<li>Contact Us</li>	
+		<li>Blog</li>	
+			</ul>
+	</div>
+	<div class="box2 box">Search Bar
+		<form action="">
+			<input type ="text" placeholder="search.." name="search">
+		<button type="sumbit"></button>
+
+	</div>
+	<div class="box3 box">Team Members
+		<ul>
+			<li>Walsh Fernandes</li>
+			<li>Rahul Nandrajog</li>
+			<li>Aniket Shinde</li>
+			<li>Harsh Motwani</li>
+
+		</ul>
+	</div>
+	<div class="box4 box">follow us on
+	<a href="#" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-twitter"></a>
+<a href="#" class="fa fa-google"></a>
+<a href="#" class="fa fa-youtube"></a>
+<a href="#" class="fa fa-instagram"></a>
+</div>
+</div>
+
+<div class="box5 box">&copy Copyrights Reserved 2018</div>
+
+</footer>
+
 </html>
 {% block javascript %}
 <script type="text/javascript">
