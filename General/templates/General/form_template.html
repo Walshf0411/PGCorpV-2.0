@@ -1,0 +1,83 @@
+
+<style type="text/css">
+	.main-container{
+		width:80%;
+		margin:auto;
+		line-height: 1.6em;
+		margin-top: 80px;
+	}
+	.main-form{
+		width:50%;
+		margin:auto;
+		padding:10% 5%;
+		border:1px #333 solid;
+		background-color: #f4f4f4;
+	}
+	.container{
+		width:80%;
+		margin:auto;
+	}
+	.form-username label{
+		display: block;
+		text-transform: uppercase;
+		text-align: left;
+		font-weight: bold;
+	}
+	.form-username input{
+		width:100%;
+		border: none;
+		background-color: #f4f4f4;
+		border-bottom:1px solid black;
+		margin-bottom:15%;
+		outline: none;
+	}
+	.form-username input:focus{
+		border-bottom: 1px solid blue;
+	}
+
+	.form-password label{
+		display: block;
+		text-transform: uppercase;
+		text-align: left;
+		font-weight: bold;
+	}
+	.form-password input{
+		width:100%;
+		border: none;
+		background-color: #f4f4f4;
+		border-bottom:1px solid black;
+		margin-bottom:15%;
+		outline: none;
+	}
+	.form-password input:focus{
+		border-bottom: 1px solid blue;
+	}
+
+	#submit{
+		width:50%;
+	}
+	#submit:hover{
+		background-color: red;
+	}
+</style>
+<div class="main-container">
+	<form class="main-form" align="center">
+		<div class="container">
+			<div class="form-username">
+				<label>
+					Username:
+				</label>
+				<input type="text" placeholder="Enter username">
+			</div>
+
+			<div class="form-password">
+				<label>
+					Password:
+				</label>
+				<input type="password" placeholder="Enter Password">
+			</div>
+
+			<input type="submit" value="Sign in" class="btn btn-primary" id="submit">
+		</div>
+	</form>
+</div>
