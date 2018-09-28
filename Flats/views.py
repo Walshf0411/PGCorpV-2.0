@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from .models import FlatDetails, Flat
 from django.urls import reverse_lazy
 
@@ -31,3 +31,7 @@ class FlatDetailsView(DetailView):
 	def get_object(self):
 		flat = FlatDetails.objects.get(hash=self.kwargs["hash"])
 		return flat
+
+class FlatsListView(ListView):
+	model = FlatDetails
+	template_name = "Flats/flats_list.html"
