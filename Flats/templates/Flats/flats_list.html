@@ -1,7 +1,44 @@
 {% extends 'Accounts/base.html' %}
 
 {% block title %}Rent a Flat{% endblock %}
+{% block cssfiles %}
+<style>
+#searchresult
+{
+	border:2px solid black;
+	font-family: 'sans-serif','arial','Helvetica';
+	
+	margin-left:-7px;
+}
+.divisions
+{
+	margin-left:20%;
+	margin-right:17%;
+	border:2px solid black;
+	margin: 0px,auto;
+	height:100px;
+	padding: 5px;
+	padding-bottom: 10px;
+}
+.divisions .innerdiv
+{
+	
+	border:2px solid black;
+	height: 100%;
+	width:200px;
 
+}
+</style>
+{% endblock %}
 {% block content %}
-	lists
+	<header>
+		<div id="searchresult">
+			<h1>Search Result</h1><hr>
+		</div>
+	</header>
+	<br>
+	<div class="divisions">
+		<div class="innerdiv">
+		</div>
+	</div>
 {% endblock %}
