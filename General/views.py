@@ -18,3 +18,14 @@ class AjaxBasedSearch(View):
 			'results': results,
 		}
 		return JsonResponse(json)
+
+class Search(ListView):
+	template_name = 'General/search_results.html'
+	model = FlatDetails
+	queryset = None
+	context_object_name = "flats"
+
+	def dispatch(self, request, *args, **kwargs):
+		search = request.GET.get("search", "")
+		self.queryset = FlatDetails.objects.filter(title__contains=search)
+		return super().dispatch(request, args, kwargs)
