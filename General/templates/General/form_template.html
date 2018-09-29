@@ -6,7 +6,7 @@
 		margin-top: 80px;
 	}
 	.main-form{
-		width:50%;
+		width:75%;
 		margin:auto;
 		padding:10% 5%;
 		border:1px #333 solid;
@@ -58,22 +58,21 @@
 	}
 </style>
 <div class="main-container">
-	<form class="main-form" align="center">
+	<form class="main-form" align="center" method="POST">{% csrf_token %}
 		<div class="container">
+			{% for field in form %}
 			<div class="form-username">
+				{% if field.errors %}
+				<div class="alert alert-danger alert-dismissible">
+					{{field.errors}}
+				</div>
+				{% endif %}
 				<label>
-					Username:
+					{{field.label_tag}}
 				</label>
-				<input type="text" placeholder="Enter username">
+				{{field}}
 			</div>
-
-			<div class="form-password">
-				<label>
-					Password:
-				</label>
-				<input type="password" placeholder="Enter Password">
-			</div>
-
+			{% endfor %}
 			<input type="submit" value="Sign in" class="btn btn-primary" id="submit">
 		</div>
 	</form>
