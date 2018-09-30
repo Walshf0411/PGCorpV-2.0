@@ -2,6 +2,76 @@
 
 {% block title %}Signup{% endblock %}
 
+{% block cssfiles %}
+.container {
+    background-color: #f8f9fa;
+    width: 80%;
+    border: 5% ;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    margin-top : 100px;
+}
+.box1{	
+	width: 50%;
+	margin: auto;
+	padding-bottom: 10 px;
+	display: inline-block;
+}
+.main-form label {
+	margin:10px 0px;
+	text-align:left;
+	font-weight:bold;
+	line-height: 1.6em;
+}
+
+.main-form input {
+	text-align:left;
+	border: none;
+	width: 100%;
+	border-bottom: 1px solid black;
+	margin:10px 0px ;
+	outline:none;
+	background-color: solid blue;
+}
+
+.main-form input:focus{
+	border-bottom:1px solid blue;
+
+}
+
+#submit{
+	padding:10px;
+	color:white;
+	width:50%;
+	text-align: center;
+	margin-left:25%;
+	background-color: blue;
+}
+
+#submit:hover{
+	background-color: black;
+}
+.login-lost:hover {
+	font-size :120%;
+}
+
+
+@media screen (max-width:580px)
+{
+	.container{
+		width: 100%;
+		margin-top:10px;
+	}
+
+	.box1 {
+		width:80%;
+	}
+
+
+}
+{% endblock %}
+
 {% block content %}
 	<div class="container">
 		<div class="row">
@@ -10,7 +80,33 @@
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
 			</div>
-			<div class="col-sm-8">{% include 'General/form_template.html' %}</div>
+			<div class="col-sm-8">
+				<form class="main-form" align="left">
+			<h1 class="login-title">Registration Page</h1>
+				<label>First Name:</label>
+			<br>
+			    <input type="text" class="First Name" placeholder="First Name" autofocus>
+			    <br>
+				<label>Last Name:</label>
+			    <br>
+			    <input type="text" class="Last Name" placeholder="Last Name" autofocus>
+			    <br>
+					 <label>User Name:</label>
+			    <br>
+			    <input type="text" class="User Name" placeholder="User Name" autofocus>
+			    <br>
+				<label>Password:</label>
+			     <br>
+			     <input type="password" class="login-input" placeholder="Password">
+			     <br>
+				 <label>Confirm Password:</label>
+			      <br>
+			     <input type="text" class="password" placeholder="confirm-password" autofocus>
+			     <br>
+			    <input type="submit" value="Sumbit" class="login-button" id="submit">
+			  <p class="login-lost" ><a href="">Forgot Password?</a></p>
+			  </form>
+			</div>
 		</div>
 	</div>
 		
