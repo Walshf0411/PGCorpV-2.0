@@ -62,9 +62,10 @@
 		<div class="container">
 			{% for field in form %}
 			<div class="form-username">
-				{% if field.errors %}
+				{% if field.error %}
 				<div class="alert alert-danger alert-dismissible">
-					{{field.errors}}
+					{{field.error}}
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				</div>
 				{% endif %}
 				<label>
