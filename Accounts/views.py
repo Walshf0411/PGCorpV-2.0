@@ -18,5 +18,11 @@ class UserSignupView(CreateView):
 class UserLoginView(LoginView):
 	template_name = 'Accounts/login.html'
 
+	def form_valid(self, form):
+		self.request.session['user_logged_in'] = True
+		return super().form_valid(form)
+
 class UserLogoutView(LogoutView):
-	pass
+	
+	def dispatch(self, request, *args, **kwargs):
+		return super().dispatch(request, *args, **kwargs)

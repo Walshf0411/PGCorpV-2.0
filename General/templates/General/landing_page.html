@@ -53,10 +53,30 @@
 		letter-spacing:8px;
 		text-transform: uppercase;
 	}
+	#notif-box{
+		position:absolute;
+		width:200px;
+		height: 90px;
+		top:50px;
+		left:-400px;
+		opacity: 0;
+		transition:opacity ease-in-out 1000ms;
+		background-color: green;
+		color:white;
+		border-radius: 4px;
+	}
+	#notif-close{
+		cursor: pointer;
+		float:right;
+		margin-right: 5px;
+		margin-top: 2px;
+	}
+	#notif-box-content{
+		margin:2px;
+	}
 </style>
 
 {% endblock %}
-
 
 {% block content %}
 <body>
@@ -87,6 +107,31 @@
 			</span>
 		</div>
 	</div>
+	<div id="notif-box">
+		<span id="notif-close" onclick="closeNotif()">x</span>
+		<p id="notif-box-content"></p>
+	</div>
+</body>
+{% endblock %}
 
-
+{% block javascript %}
+<script type="text/javascript">
+	var status = "{{ show_notif }}";
+	function closeNotif() {
+		document.getElementById('notif-box').style.opacity = 0;
+	}
+	function showNotif(){
+		document.getElementById('notif-box').style.backgroundColor = "{{ color }}";
+		document.getElementById('notif-box-content').innerHTML = "{{ notif_message }}";
+		document.getElementById('notif-box').style.opacity = 1;
+		document.getElementById('notif-box').style.left = "10px";
+	}
+	if(status == "True"){
+		setTimeout(showNotif, 1000);
+		setTimeout(closeNotif, 5000);
+		setTimeout(function(){
+			document.getElementById('notif-box').style.left = "-400px";
+		}, 6000);
+	}
+</script>
 {% endblock %}
