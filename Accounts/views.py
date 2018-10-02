@@ -15,6 +15,10 @@ class UserSignupView(CreateView):
 	form_class = UserSignupForm
 	success_url = '/'
 
+	def form_valid(self, form):
+		self.request.session['user_created'] = True
+		return super().form_valid(form)
+
 class UserLoginView(LoginView):
 	template_name = 'Accounts/login.html'
 
