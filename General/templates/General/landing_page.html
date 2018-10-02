@@ -60,7 +60,7 @@
 		top:50px;
 		left:-400px;
 		opacity: 0;
-		transition:opacity ease-in-out 1000ms;
+		transition:opacity ease-in-out 1000ms, left ease-in-out 1000ms;
 		background-color: green;
 		color:white;
 		border-radius: 4px;
@@ -120,6 +120,7 @@
 	var status = "{{ show_notif }}";
 	function closeNotif() {
 		document.getElementById('notif-box').style.opacity = 0;
+		document.getElementById('notif-box').style.left = "-400px"
 	}
 	function showNotif(){
 		document.getElementById('notif-box').style.backgroundColor = "{{ color }}";
@@ -128,11 +129,8 @@
 		document.getElementById('notif-box').style.left = "10px";
 	}
 	if(status == "True"){
-		setTimeout(showNotif, 1000);
+		setTimeout(showNotif, 500);
 		setTimeout(closeNotif, 5000);
-		setTimeout(function(){
-			document.getElementById('notif-box').style.left = "-400px";
-		}, 6000);
 	}
 </script>
 {% endblock %}
