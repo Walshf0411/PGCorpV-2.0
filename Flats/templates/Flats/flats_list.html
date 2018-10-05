@@ -2,124 +2,53 @@
  {% block title %}Rent a Flat{% endblock %}
 {% block cssfiles %}
 <style>
-.container-fluid
-{
-	margin-top:50px;
-
-	border: 2px solid black;
-	
-}
-.row
-{
-	
-	padding-top:25px;
-
-	padding-left: 4px;
-
-}
-.col-sm-12 h2
-{
-	font-size: 50px;
-}
-
-.container
-{
-	border:2px solid blue;
-	padding:10px;
-}
-.container .col-sm-4
-{
-	border:2px solid brown;
-	
-}
-#left
-{
-	overflow: hidden;
-	float:left;
-}
-#right
-{
-	box-sizing: border-box;
-	/*border:1px solid black;*/
-
-	/*height: 300px;*/
-	padding: 0px;
-	float: right;
-}
-.col-sm-4 
-{
-	
-	
-}
-#subleft
-{
-	margin:0px;
-	float: left;
-	border: double brown;
-	/*height: 50%;*/
-	overflow: hidden;
-}
-#subright
-{
-	margin: 0px;
-	height: 50%;
-	/*overflow: hidden;*/
-	float: right;
-	border:double brown;
-}
+	.flat-box{
+		width: 250px;
+		float: left;
+		margin-top: 50px;
+		margin-bottom: 50px;		 
+		background-color: white;
+		margin-left: 85px;
+		border-radius: 18px;
+		padding:15px;
+		box-shadow: 5px 10px #D3D3D3;
+		transition: transform 0.7s ease-in-out;
+	}
+	.img-box{
+		border: 1px solid black; 
+		width: 125px;
+		height: 150px;
+	}
+	a{
+		text-decoration: none;
+	}
  </style>
 {% endblock %}
 {% block content %}
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-12">
-				<h2>Search Result<hr></h2>
-			</div>
-		</div>
-	</div><br><br>
-	<div class="container">
-		<div class="col-sm-4" id="left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
-		<div class="col-sm-4" id="right">
-			<div class="col-sm-6" id=subleft>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<div class="col-sm-6" id=subright>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<div style="clear:both"></div>
-			<div class="col-sm-6" id=subleft>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<div class="col-sm-6" id=subright>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<div style="clear:both"></div>		
-		</div>
-		<div style="clear:both"></div>
-		<div id="#button">
-		<button>Search</button>
+<div class="container">
+	<h1>Available flats</h1>
+	{% for flat in flats %}
+	<div class="flat-box" align="center" onmouseover="scaleFlatBox(this)" onmouseout="unscaleFlatBox(this)">
+		<div class="img-box">
+			<img class="thumbnail" alt="flat image" src="">
+		</div><br>
+		<strong>Title: </strong>{{ flat.title }}<br>
+		<strong>Location: </strong>{{ flat.location }}<br>
+		<strong>Rent: </strong>&#8377; {{ flat.rent }}<br><br>
+		<a class="flat-link btn btn-info" href="#">View flat details</a>
 	</div>
-	</div>
+	{% endfor %}
+</div>
+
+ {% endblock %}
+ 
+ {% block javascript %}
+ 	<script type="text/javascript">
+ 		function scaleFlatBox(element){
+ 			element.style.transform = "scale(1.3, 1.3)";
+ 		}
+ 		function unscaleFlatBox(element){
+ 			element.style.transform = "scale(1, 1)";
+ 		}
+ 	</script>
  {% endblock %}

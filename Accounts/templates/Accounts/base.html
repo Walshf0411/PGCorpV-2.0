@@ -167,58 +167,23 @@
 {% endblock %}
 </body>
 
-<footer>
-	
-<div class="container1">
-	<div class="box1 box">links
-		<ul>
-		<li>About PG Corp</li>
-		<li>Privacy Policy</li>
-		<li>Terms of Use</li>	
-		<li>FAQs</li>
-		<li>Contact Us</li>	
-		<li>Blog</li>	
-			</ul>
-	</div>
-	<div class="box2 box">Search Bar
-		<form action="">
-			<input type ="text" placeholder="search.." name="search">
-		<button type="sumbit"></button>
-
-	</div>
-	<div class="box3 box">Team Members
-		<ul>
-			<li>Walsh Fernandes</li>
-			<li>Rahul Nandrajog</li>
-			<li>Aniket Shinde</li>
-			<li>Harsh Motwani</li>
-
-		</ul>
-	</div>
-	<div class="box4 box">follow us on
-	<a href="#" class="fa fa-facebook"></a>
-<a href="#" class="fa fa-twitter"></a>
-<a href="#" class="fa fa-google"></a>
-<a href="#" class="fa fa-youtube"></a>
-<a href="#" class="fa fa-instagram"></a>
-</div>
-</div>
-
-<div class="box5 box">&copy Copyrights Reserved 2018</div>
-
-</footer>
-
 </html>
 
 <script type="text/javascript">
+	// this is the script that generates suggestions for the search bar
 	$("#search").focus(function() {
+		// when the search bar is focuesed, the dropdown pops up
 		$(".results-dropdown").show();
 	});
 	$("#search").focusout(function() {
+		// when the focus is out from the search bar and the search has no 
+		// value in it, hide the dropdown
 		if(!$(".results-dropdown").val())
 			$(".results-dropdown").hide();
 	});
 	$(".results-dropdown").change(function() {
+		// on selection of an option from the dropdown
+		// the value in the text box changes
 		var string = $("select option:selected").text();
 		$("#search").val(string);
 	});
@@ -251,6 +216,9 @@
 					// matches something in the databaase, we show suggestions
 					if(searchArray.length > 0)
 						for (var i = 0; i < searchArray.length; i++) {
+							// here we create the option tags by taking the values fetched from the 
+							// db and thne check whether it already exists in the dropdown
+							// if exists we don't add it, else we add it to the select box
 							selectHtml = '<option value="'+searchArray[i]+'">'+searchArray[i]+'</option>';
 							if(!$('.results-dropdown').html().includes(selectHtml))
 								$('.results-dropdown').prepend(selectHtml);

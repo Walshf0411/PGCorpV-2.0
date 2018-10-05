@@ -29,11 +29,22 @@ class LandingPage(TemplateView):
 				'color': 'blue',
 				})
 
+		if self.request.session.get('flat_posted', None):
+			message = "Your flat has been posted successfully. You can view it on the page."
+			context.update({
+				'show_notif': True,
+				'notif_message': message,
+				'color': 'green',
+				})
+
 		if 'user_logged_in' in self.request.session:	
 			del(self.request.session['user_logged_in'])		
 
 		if 'user_created' in self.request.session:	
 			del(self.request.session['user_created'])
+
+		if 'flat_posted' in self.request.session:
+			del(self.request.session['flat_posted'])
 
 		return context
 	

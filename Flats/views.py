@@ -16,6 +16,7 @@ class FlatPostView(CreateView):
 		flat.user = self.request.user
 		flat.save()
 		form.instance.flat = flat
+		self.request.session['flat_posted'] = True
 		return super().form_valid(form)
 
 class FlatDetailsView(DetailView):
