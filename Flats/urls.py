@@ -3,6 +3,6 @@ from .import views
 
 urlpatterns = [
 	url(r'post/$', views.FlatPostView.as_view(), name='post'),
-	url(r'(?P<hash>[a-zA-Z0-9]+)/(?P<slug>[a-zA-Z0-9]+)/$', views.FlatDetailsView.as_view(), name='flat_details'),
+	url(r'(?P<hash>[\w-]{6})/(?P<slug>[\w-]+)/$', views.FlatDetailsView.as_view(), name='flat_detail'),
 	url(r'all/$', views.FlatsListView.as_view(), name='all_flats')
 ]
