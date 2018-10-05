@@ -4,6 +4,7 @@ from django.views import View
 from django.http import JsonResponse
 from Flats.models import FlatDetails
 from django.views.generic import ListView
+from Flats.views import FlatsListView
 # Create your views here.
 
 class LandingPage(TemplateView):
@@ -52,19 +53,20 @@ class AjaxBasedSearch(View):
 	
 	def get(self, request, *args, **kwargs):
 		string = request.GET['data']
-		results = list(map(lambda x:x.title, FlatDetails.objects.filter(title__contains=string)))
+		results = list(map(lambda x:x.title, FlatDetails.objects.filter(location__contains=string)))
 		json = {
 			'results': results,
 		}
 		return JsonResponse(json)
 
-class Search(ListView):
+class Search(FlatsListView):
 	template_name = 'General/search_results.html'
-	model = FlatDetails
-	queryset = None
-	context_object_name = "flats"
 
-	def dispatch(self, request, *args, **kwargs):
-		search = request.GET.get("search", "")
-		self.queryset = FlatDetails.objects.filter(title__contains=search)
-		return super().dispatch(request, args, kwargs)
+	def get_context_data(self):
+		context = super().get_context_data()
+		context.update({'query': self.request.GET['search']})
+		return context
+
+	def get_queryset(self):
+		search = self.request.GET['search']
+		return FlatDetails.objects.filter(location__contains=search)
