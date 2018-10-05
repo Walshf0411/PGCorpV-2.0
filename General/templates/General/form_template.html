@@ -9,8 +9,9 @@
 		width:75%;
 		margin:auto;
 		padding:10% 5%;
-		border:1px #333 solid;
 		background-color: #f4f4f4;
+		border-radius: 18px;
+		box-shadow: 5px 10px #D3D3D3;
 	}
 	.container{
 		width:80%;
@@ -62,19 +63,19 @@
 		<div class="container">
 			{% for field in form %}
 			<div class="form-username">
-				{% if field.error %}
-				<div class="alert alert-danger alert-dismissible">
-					{{field.error}}
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				</div>
-				{% endif %}
 				<label>
 					{{field.label_tag}}
 				</label>
 				{{field}}
 			</div>
 			{% endfor %}
-			<input type="submit" value="Sign in" class="btn btn-primary" id="submit">
+			{% if form.non_field_errors %}
+				<div class="alert alert-danger alert-dismissible">
+					{{form.non_field_errors}}
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				</div>
+			{% endif %}
+			<input type="submit" value="Login" class="btn btn-primary" id="submit">
 		</div>
 	</form>
 </div>
