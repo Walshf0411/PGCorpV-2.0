@@ -14,7 +14,7 @@
 		box-shadow: 5px 10px #D3D3D3;
 	}
 	.container{
-		width:80%;
+		width:100%;
 		margin:auto;
 	}
 	.form-username label{
@@ -63,6 +63,13 @@
 		<div class="container">
 			{% for field in form %}
 			<div class="form-username">
+				{% if field.errors %}
+				<div class="alert alert-danger alert-dismissible fade show">
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				    <strong>Danger!</strong>{{field.errors}}
+			  	</div>
+				{% endif %}
+				<br>
 				<label>
 					{{field.label_tag}}
 				</label>
@@ -75,7 +82,7 @@
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				</div>
 			{% endif %}
-			<input type="submit" value="Login" class="btn btn-primary" id="submit">
+			<input type="submit" value="Proceed." class="btn btn-primary" id="submit">
 		</div>
 	</form>
 </div>
