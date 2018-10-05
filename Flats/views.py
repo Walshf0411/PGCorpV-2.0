@@ -22,11 +22,13 @@ class FlatPostView(CreateView):
 class FlatDetailsView(DetailView):
 	model = FlatDetails
 	template_name = 'Flats/flat_details.html'
+	slug_field = "slug"
 
 	def get_context_data(self, *args, **kwargs):
 		context = super().get_context_data()
 		user = context['flatdetails'].flat.user
 		context.update({"user": user})
+		print(context)
 		return context
 
 	def get_object(self):

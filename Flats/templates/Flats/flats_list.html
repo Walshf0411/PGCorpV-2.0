@@ -35,7 +35,7 @@
 		<strong>Title: </strong>{{ flat.title }}<br>
 		<strong>Location: </strong>{{ flat.location }}<br>
 		<strong>Rent: </strong>&#8377; {{ flat.rent }}<br><br>
-		<a class="flat-link btn btn-info" href="#">View flat details</a>
+		<a class="flat-link btn btn-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View flat details</a>
 	</div>
 	{% endfor %}
 </div>

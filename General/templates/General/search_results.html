@@ -1,48 +1,54 @@
 {% extends 'Accounts/base.html' %}
- {% block title %}Search result{% endblock %}
-
+ {% block title %}Rent a Flat{% endblock %}
 {% block cssfiles %}
 <style>
-	body, html{
-		background-color: #e9e9e9;
+	.flat-box{
+		width: 250px;
+		float: left;
+		margin-top: 50px;
+		margin-bottom: 50px;		 
+		background-color: white;
+		margin-left: 85px;
+		border-radius: 18px;
+		padding:15px;
+		box-shadow: 5px 10px #D3D3D3;
+		transition: transform 0.7s ease-in-out;
 	}
-	.flat-details-parent{
-		background-color: #fff;
-	}
-	.flat-img{
+	.img-box{
+		border: 1px solid black; 
+		width: 125px;
 		height: 150px;
-		border: 0.5px solid black;
 	}
-	.flat-details-parent{
-		margin-top: 20px;
-		width:80%;
-	}
-	ul{
-		list-style-type: none;
+	a{
+		text-decoration: none;
 	}
  </style>
 {% endblock %}
-
 {% block content %}
-	<div class="container" >
-		<h1>Search Results</h1>
-		{% for flat in flats %}
-		<div class="flat-details-parent container">
-			<div class="row">
-				<strong>{{ flat.title }}</strong>
-				<div class="ml-auto"><strong>Location: </strong>{{ flat.location }}</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3 flat-img">div for image</div>
-				<div class="col-sm-9 flat-details">
-					<ul>
-						<li>
-							<strong>Rent: </strong>&#x20B9 {{flat.rent}}
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		{% endfor %}
+<div class="container">
+	<h1>Results for your query: {{query}}</h1>
+	{% for flat in flats %}
+	<div class="flat-box" align="center" onmouseover="scaleFlatBox(this)" onmouseout="unscaleFlatBox(this)">
+		<div class="img-box">
+			<img class="thumbnail" alt="flat image" src="">
+		</div><br>
+		<strong>Title: </strong>{{ flat.title }}<br>
+		<strong>Location: </strong>{{ flat.location }}<br>
+		<strong>Rent: </strong>&#8377; {{ flat.rent }}<br><br>
+		<a class="flat-link btn btn-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View flat details</a>
 	</div>
+	{% endfor %}
+</div>
+
+ {% endblock %}
+ 
+ {% block javascript %}
+ 	<script type="text/javascript">
+ 		function scaleFlatBox(element){
+ 			element.style.transform = "scale(1.3, 1.3)";
+ 		}
+ 		function unscaleFlatBox(element){
+ 			element.style.transform = "scale(1, 1)";
+ 		}
+ 	</script>
  {% endblock %}
