@@ -1,8 +1,13 @@
 from django.shortcuts import render
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import (
+	LoginView, 
+	LogoutView,
+	PasswordChangeView, 
+	PasswordChangeDoneView)
 from .forms import UserSignupForm
 from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 # A view is a basically the main processing unit of an app
@@ -34,3 +39,10 @@ class UserLogoutView(LogoutView):
 
 class UserProfileView(TemplateView):
 	template_name = 'Accounts/user_profile.html'
+
+
+class UserPasswordChangeView(PasswordChangeView):
+	template_name = 'Accounts/password_change.html'
+
+class UserPasswordChangeDoneView(PasswordChangeDoneView):
+	template_name = 'Accounts/password_change_done.html'
