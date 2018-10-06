@@ -1,8 +1,103 @@
 {% extends 'Accounts/base.html' %}
+
 {% block title %}Profile{% endblock %}
 
-{% block cssfiles %}{% endblock %}
+{% block cssfiles %}
+<style type="text/css">
+	#jumbo {
+		background-color: #d3d3d3;
+		margin:0;
+	}
+
+	#jumbo label{
+		font-weight: bold;
+		font-size:35px;
+		text-transform: capitalize;
+		padding-left: 30px;
+	}
+	.wrapper{
+		position: relative;
+		display:inline;
+		margin-left:20px;
+		padding:50px;
+	}
+	.wrapper img{
+
+		width:100px;
+		height:100px;
+	}
+
+	#cont{
+		margin:0;
+	}
+
+	.row .col-md-2{
+		background-color: #d3d3d3;
+		display:inline-block;
+		height:100%;
+	}
+
+	.col-md-2 #nav-style{
+		background-color: #d3d3d3;width:100%;margin:0;padding:0;
+		margin-bottom: 200%;
+	}
+
+	.col-md-2 #nav-style2{
+		background-color: #d3d3d3;width:100%;margin:0;padding:0;
+	}
+</style>
+
+{% endblock %}
 
 {% block content %}
-<h1>Content goes here.</h1>
+
+<div class="cotainer container-fluid">
+	<div class="row">
+		<div class="col-md-2" >
+			<nav class="navbar bg-light" id="nav-style">
+				<ul class="navbar-nav" id="nav-style2">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link 2</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link 3</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link 4</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link 5 </a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-md-10 col-sm-12" id="cont">
+			<div class="jumbotron jumbotron-fluid" id="jumbo">
+				{% load static %}
+				<div class="wrapper"><img src="{% static 'homepage/imgPG/bootPG.png' %}" class="rounded-circle"></div>
+				<label> user name </label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			
+		</div>
+	</div>
+</div>
+
 {% endblock %}
+
+{% block javascript %}
+	<script type="text/javascript">
+		function random_bg_color(){
+			var x=Math.floor(Math.random()*256);
+			var y=Math.floor(Math.random()*256);
+			var z=Math.floor(Math.random()*256);
+			var bg_color="rgb("+x+","+y+","+z")";
+			document.body.style.background=bg_color;
+		}
+
+	</script>
+{% endblock %}
+
