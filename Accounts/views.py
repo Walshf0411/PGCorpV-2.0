@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import UserSignupForm
 from django.views.generic.edit import CreateView
+from django.views.generic import TemplateView
 
 # Create your views here.
 # A view is a basically the main processing unit of an app
@@ -30,3 +31,6 @@ class UserLogoutView(LogoutView):
 	
 	def dispatch(self, request, *args, **kwargs):
 		return super().dispatch(request, *args, **kwargs)
+
+class UserProfileView(TemplateView):
+	template_name = 'Accounts/user_profile.html'

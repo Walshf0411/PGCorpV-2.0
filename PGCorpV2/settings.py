@@ -126,3 +126,4 @@ STATIC_URL = '/static/'
 lOGIN_URL = reverse_lazy('login')
 LOGOUT_REDIRECT_URL = reverse_lazy('land_page')
 LOGIN_REDIRECT_URL = reverse_lazy('land_page')
+# if not specifed, redirects to /accounts/profile/
