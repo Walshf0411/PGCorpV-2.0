@@ -1,49 +1,29 @@
-{% extends 'Accounts/base.html' %}
+{% extends 'Accounts/dashboard_base.html' %}
 
 {% block title %}Profile{% endblock %}
 
 {% block cssfiles %}
 <style type="text/css">
-	#jumbo {
-		background-color: #d3d3d3;
-		margin:0;
+	.pg_container{
+		position: absolute;
+		background-color: white;
+		border-radius: 18px;	
+		box-shadow: 5px 10px #D3D3D3;
+		width: 70%;
+		left:300px;
 	}
-
-	#jumbo label{
-		font-weight: bold;
-		font-size:35px;
-		text-transform: capitalize;
-		padding-left: 30px;
+	.color-white{
+		background-color: white;
 	}
-	.wrapper{
-		position: relative;
-		display:inline;
-		margin-left:20px;
-		padding:50px;
+	#basic-details{
+		top: 15px;
 	}
-	.wrapper img{
-
-		width:100px;
-		height:100px;
+	#basic-stats{
+		top:200px;
 	}
-
-	#cont{
-		margin:0;
-	}
-
-	.row .col-md-2{
-		background-color: #d3d3d3;
-		display:inline-block;
-		height:100%;
-	}
-
-	.col-md-2 #nav-style{
-		background-color: #d3d3d3;width:100%;margin:0;padding:0;
-		margin-bottom: 200%;
-	}
-
-	.col-md-2 #nav-style2{
-		background-color: #d3d3d3;width:100%;margin:0;padding:0;
+	img{
+		width: 150px;
+		height: 150px;
 	}
 </style>
 
@@ -51,41 +31,72 @@
 
 {% block content %}
 
-<div class="cotainer container-fluid">
-	<div class="row">
-		<div class="col-md-2" >
-			<nav class="navbar bg-light" id="nav-style">
-				<ul class="navbar-nav" id="nav-style2">
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link 2</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link 3</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link 4</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link 5 </a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-		<div class="col-md-10 col-sm-12" id="cont">
-			<div class="jumbotron jumbotron-fluid" id="jumbo">
-				{% load static %}
-				<div class="wrapper"><img src="{% static 'homepage/imgPG/bootPG.png' %}" class="rounded-circle"></div>
-				<label> user name </label>
-			</div>
-		</div>
-	</div>
+<div class="container pg_container" id="basic-details">
 	<div class="row">
 		<div class="col-sm-3">
-			{% for flat in flats_posted %}
-			{{flat.title}}
-			{% endfor %}
+			{% load static %}
+			<img class="rounded-circle" src="{% static 'homepage/imgPG/bootPG.png' %}"></img>
+		</div>
+		<div class="col-sm-9">
+			<h1>{{user}}</h1>
+				<strong>First Name: </strong>{{user.first_name}}<br>
+				<strong>Last Name: </strong>{{user.last_name}}<br>
+				<strong>Email: </strong>{{user.email}}<br>
 		</div>
 	</div>
+</div>
+
+<div class="container pg_container color-white" id="basic-stats">
+	<ul class="nav nav-tabs color-white">
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#flats_posted">
+				flats posted
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#flats_applied">
+				flats Applied
+			</a>
+		</li>
+	</ul>
+
+	<div class="tab-content color-white">
+		<div class="tab-pane container active color-white" id="flats_posted">
+			<br>
+			{% if flats_posted is not None %}
+				<table class="table table-bordered">
+					<tr>
+						<th>Title</th>
+						<th>Location</th>
+						<th>Action</th>
+					</tr>
+				{% for flat in flats_posted %}
+					<tr>
+						<td>{{flat.title}}</td>
+						<td>{{flat.location}}</td>
+						<td>
+							<a class="btn btn-danger">Delete</a>&nbsp;
+							<a class="btn btn-info">Update</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+			<br>
+				<p>You have not posted any flats yet</p>
+			{% endif %}
+			</table>
+		</div>
+
+		<div class="tab-pane container fade color-white" id="flats_applied">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</div>
+	</div>
+
 </div>
 
 {% endblock %}
