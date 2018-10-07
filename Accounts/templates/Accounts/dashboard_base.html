@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard | {% block title %}{% endblock %}</title>
+	{% load static %}
+	<link rel="icon" href="{% static 'favicon.ico'%}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body{
+    	background-color: #e9e9e9;
+    }
+    #sidenav{
+    	float: left;
+    	width:15%;
+    	background-color: white;
+    	height: 100vh;
+    }
+    .nav-item{
+    	background-color: white;
+    	padding-left: 20px;
+    }
+    </style>
+    {%block cssfiles%}{%endblock%}
+</head>
+<body>
+<!--Side nav content class="flex-column"-->
+<ul class="nav flex-column" id="sidenav">
+	<li class="nav-item">
+		<a class="navbar-brand" href="{% url 'land_page' %}">
+			PGCORP
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Dashboard</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Update Profile</a>
+	</li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile'%}">View your acivities</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'password_change'%}">Change Password</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout'}">Logout</a>
+    </li>
+</ul>
+{% block content %}{% endblock %}
+</body>
+</html>

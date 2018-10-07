@@ -49,7 +49,7 @@ class UserProfileView(TemplateView):
 		flats_posted = map(lambda x: x.flatdetails_set.all(), flats_posted)
 		flats_posted = map(lambda x: x[0], flats_posted) 
 		context.update({
-			'flats_posted': flats_posted,
+			'flats_posted': list(flats_posted),
 		})
 		return context
 
