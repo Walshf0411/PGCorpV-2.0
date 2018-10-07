@@ -6,8 +6,9 @@ from django.contrib.auth.views import (
 	PasswordChangeDoneView)
 from .forms import UserSignupForm
 from django.views.generic.edit import CreateView
-from django.views.generic import TemplateView
+from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
+from Flats.models import FlatDetails, Flat
 
 # Create your views here.
 # A view is a basically the main processing unit of an app
@@ -40,9 +41,23 @@ class UserLogoutView(LogoutView):
 class UserProfileView(TemplateView):
 	template_name = 'Accounts/user_profile.html'
 
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data()
+		# current user
+		user = self.request.user
+		flats_posted = Flat.objects.filter(user=user)
+		flats_posted = map(lambda x: x.flatdetails_set.all(), flats_posted)
+		flats_posted = map(lambda x: x[0], flats_posted) 
+		context.update({
+			'flats_posted': flats_posted,
+		})
+		return context
+
 
 class UserPasswordChangeView(PasswordChangeView):
 	template_name = 'Accounts/password_change.html'
+	success_url = reverse_lazy('password_change_done')
+
 
 class UserPasswordChangeDoneView(PasswordChangeDoneView):
 	template_name = 'Accounts/password_change_done.html'

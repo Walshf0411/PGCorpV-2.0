@@ -81,7 +81,9 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-3">
-			
+			{% for flat in flats_posted %}
+			{{flat.title}}
+			{% endfor %}
 		</div>
 	</div>
 </div>
