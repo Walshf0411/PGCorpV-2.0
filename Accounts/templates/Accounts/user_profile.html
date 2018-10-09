@@ -11,15 +11,17 @@
 		box-shadow: 5px 10px #D3D3D3;
 		width: 70%;
 		left:300px;
+		top:50px;
 	}
 	.color-white{
 		background-color: white;
 	}
 	#basic-details{
-		top: 15px;
+		top: 70px;
+		padding:5px;
 	}
 	#basic-stats{
-		top:200px;
+		top:250px;
 	}
 	img{
 		width: 150px;
@@ -98,13 +100,9 @@
 	</div>
 
 </div>
-
-{% endblock %}
-
-{% block javascript %}
-	<script type="text/javascript">
+<script type="text/javascript">
 		function random_bg_color(){
-			var x=Math.floor(Math.random()*256);
+			var x=256;
 			var y=Math.floor(Math.random()*256);
 			var z=Math.floor(Math.random()*256);
 			var bg_color="rgb("+x+","+y+","+z")";
@@ -112,5 +110,9 @@
 		}
 
 	</script>
+{% endblock %}
+
+{% block javascript %}
+	
 {% endblock %}
 
