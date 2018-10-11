@@ -5,7 +5,7 @@ from django.contrib.auth.views import (
 	PasswordChangeView, 
 	PasswordChangeDoneView)
 from .forms import UserSignupForm
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from Flats.models import FlatDetails, Flat
@@ -61,3 +61,7 @@ class UserPasswordChangeView(PasswordChangeView):
 
 class UserPasswordChangeDoneView(PasswordChangeDoneView):
 	template_name = 'Accounts/password_change_done.html'
+
+
+class UpdateProfileView(TemplateView):
+	template_name = 'Accounts/update_profile.html'
