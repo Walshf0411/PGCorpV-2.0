@@ -1,18 +1,19 @@
 {% extends 'Accounts/base.html' %}
- {% block title %}Rent a Flat{% endblock %}
+{% block title %}Rent a Flat{% endblock %}
+
 {% block cssfiles %}
 <style>
 	.flat-box{
-		width: 250px;
-		float: left;
-		margin-top: 50px;
-		margin-bottom: 50px;		 
-		background-color: white;
-		margin-left: 85px;
-		border-radius: 18px;
-		padding:15px;
-		box-shadow: 5px 10px #D3D3D3;
-		transition: transform 0.7s ease-in-out;
+    width: 250px;
+    float: left;
+    margin-top: 50px;
+    margin-bottom: 50px;		 
+    background-color: white;
+    margin-left: 85px;
+    border-radius: 18px;
+    padding:15px;
+    box-shadow: 5px 10px #D3D3D3;
+    transition: transform 0.7s ease-in-out;
 	}
 	.img-box{
 		border: 1px solid black; 
@@ -22,13 +23,37 @@
 	a{
 		text-decoration: none;
 	}
- </style>
+	#sideNav{
+		position: absolute;
+		width: 220px;
+		left:-200px;
+		border: 1px solid black;
+		height: 87%;
+		overflow: auto;
+		background-color:grey;
+		transition: left 0.5s ease-in-out;
+	}
+</style>
 {% endblock %}
+
 {% block content %}
-<div class="container">
+<div id="sideNav" onmouseover="sideNavOpen()" onmouseout="sideNavClose()" 
+	ondragover="sideNavOpen()" ondragleave="sideNavClose()" ondrop="dragDrop(event)">
+	<center>
+		<div class="sidebar-header" >
+			<h3>Compare flats </h3>
+		</div>
+	</center>
+	<!-- the main nav bar starts here -->
+	<div class="dropper" id="dropper_flat">
+		
+	</div>
+</div>
+
+<div class="container" id="flats">
 	<h1>Available flats</h1>
 	{% for flat in flats %}
-	<div class="flat-box" align="center" onmouseover="scaleFlatBox(this)" onmouseout="unscaleFlatBox(this)">
+	<div class="flat-box" align="center" draggable="true">
 		<div class="img-box">
 			<img class="thumbnail" alt="flat image" src="">
 		</div><br>
@@ -43,12 +68,27 @@
  {% endblock %}
  
  {% block javascript %}
- 	<script type="text/javascript">
- 		function scaleFlatBox(element){
- 			element.style.transform = "scale(1.3, 1.3)";
- 		}
- 		function unscaleFlatBox(element){
- 			element.style.transform = "scale(1, 1)";
- 		}
+	 <script type="text/javascript">
+		var dropper = document.querySelector('#sideNav');
+		var flats = document.querySelector(".flat-box");
+		
+		for(i=0;i<flats.length;i++) {
+			flats[0].addEventListener('dragstart', dragStart);
+		} 
+		function sideNavOpen() {
+			 document.getElementById('sideNav').style.left = "0px";
+		 }
+		 function sideNavClose() {
+			document.getElementById('sideNav').style.left = "-200px";
+		 }
+		 function dragStart(event) {
+			event.dataTransfer.setData("Text", event.target.id);
+		}
+		 function dragDrop(e) {
+			event.preventDefault();
+			var data = event.dataTransfer.getData("Text");
+			event.target.appendChild(document.getElementById(data));
+		}
+
  	</script>
  {% endblock %}

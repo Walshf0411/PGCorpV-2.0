@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView, ListView
-from .models import FlatDetails, Flat
+from django.views.generic import DetailView, ListView, View
+from .models import FlatDetails
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -12,10 +12,7 @@ class FlatPostView(CreateView):
 	success_url = reverse_lazy("land_page")
 
 	def form_valid(self, form):
-		flat = Flat()
-		flat.user = self.request.user
-		flat.save()
-		form.instance.flat = flat
+		form.instance.user = self.request.user
 		self.request.session['flat_posted'] = True
 		return super().form_valid(form)
 
@@ -26,7 +23,7 @@ class FlatDetailsView(DetailView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super().get_context_data()
-		user = context['flatdetails'].flat.user
+		user = context['flatdetails'].user
 		context.update({"user": user})
 		print(context)
 		return context
@@ -40,3 +37,10 @@ class FlatsListView(ListView):
 	model = FlatDetails
 	template_name = "Flats/flats_list.html"
 	context_object_name = "flats"
+
+class ContactOwnerView(View):
+	
+	def get(self, request, *args, **kwargs):
+		if hash in kwargs:
+			hash = kwargs['hash']
+

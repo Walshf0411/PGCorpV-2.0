@@ -8,7 +8,7 @@ from .forms import UserSignupForm
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
-from Flats.models import FlatDetails, Flat
+from Flats.models import FlatDetails
 
 # Create your views here.
 # A view is a basically the main processing unit of an app
@@ -45,7 +45,7 @@ class UserProfileView(TemplateView):
 		context = super().get_context_data()
 		# current user
 		user = self.request.user
-		flats_posted = Flat.objects.filter(user=user)
+		flats_posted = FlatDetails.objects.filter(user=user)
 		flats_posted = map(lambda x: x.flatdetails_set.all(), flats_posted)
 		flats_posted = map(lambda x: x[0], flats_posted) 
 		context.update({
