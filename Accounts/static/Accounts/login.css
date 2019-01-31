@@ -1,0 +1,12 @@
+#login_text{
+    margin-top: 80px;
+}
+#form-absolute-container{
+    margin-bottom: 20px;
+}
+/* This is to remove unnecessary spacing between the text and the form*/
+@media (max-width:600px) {
+    #login_text{
+        margin-top:20px;
+    }
+}

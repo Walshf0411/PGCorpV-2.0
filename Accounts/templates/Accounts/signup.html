@@ -3,18 +3,18 @@
 {% block title %}Login{% endblock %}
 
 {% block cssfiles %}
-<style type="text/css">
-	
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'Accounts/signup.css' %}">
 {% endblock %}
 
 {% block content %}
-	<div class="container" align="center" style="margin-bottom:20px">
+	<div class="container" align="center" id="form-absolute-container">
 		<div class="row">
-			<div class="col-sm-4" style="margin-top: 80px">
+			<div class="col-sm-4" id="signup-text">
 				<h1>Signup</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+				<p>Gain access to hundreds of paying guests locations around you by signing yourself
+					to <b>PGCORP</b>.
+				</p>
 			</div>
 			<div class="col-sm-8">
 				{% include 'General/form_template.html' %}

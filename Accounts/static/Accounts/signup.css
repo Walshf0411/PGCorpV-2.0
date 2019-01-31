@@ -1,0 +1,16 @@
+.form-absolute-container{
+    margin-bottom: 20px;
+}
+
+#signup-text{
+    margin-top: 80px;
+}
+/*
+    for small size devices
+*/
+@media (max-width:600px) {
+    /*This is to remove unnecessary spacing between text and the form on mobile phones*/
+    #signup-text{
+        margin-top: 20px;
+    }
+}
