@@ -42,13 +42,6 @@
 		</ul>
 		<!--Items to the right of the navbar-->
 		<ul class="navbar-nav ml-auto">
-		<form class="form-inline search-form" action="{% url 'search' %}" method="GET">
-		    <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search" name="search">
-		    <button class="btn btn-success" type="submit" id="search-btn">Search</button>
-		</form>&nbsp;&nbsp;&nbsp;
-		<select class="results-dropdown">
-		    	
-		    </select>
 		{% if not user.is_authenticated %}
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'login' %}">Login</a>
