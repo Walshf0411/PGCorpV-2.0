@@ -9,7 +9,7 @@
 
 {% block content %}
 <body>
-	<div class="pimg1">
+	<div class="pimg1" id = "pimg1">
 		<div class="ptext">
 			<span class="border">
 				PG CORP 
@@ -29,6 +29,12 @@
 		</p>
 	</section>
 
+	<!-- 
+	<div class="body">
+		<img src="../../static/homepage/imgPG/home2PG.jpg" alt="image 1" class="example">
+		<img src="../../static/homepage/imgPG/home1PG.jpg" alt="image 2" class="example">
+	</div>
+	 -->>
 	<div class="pimg2">
 		<div class="ptext">
 			<span class="border">
@@ -60,11 +66,20 @@
 		setTimeout(showNotif, 500);
 		setTimeout(closeNotif, 5000);
 	}
-
-	function corusel(){
-		var i ;
-		var corusel = document.getElementsByClassName('pimg1');
+		// this is the section where image's url is entered 
+		var img = [
+			'../../static/homepage/imgPG/home1PG.png',
+			'../../static/homepage/imgPG/home2PG.jpg',
+		] ;
+		var corusel = document.getElementById('pimg1');
 		
-	}
+		var i =0;
+		setInterval(function(){
+			corusel.style.backgroundImage = "url(" + img[i] + ")";
+			i=(i+1);
+			if(i==img.length){
+				i=0;
+			}
+		},5000);
 </script>
 {% endblock %}

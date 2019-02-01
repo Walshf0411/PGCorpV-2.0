@@ -9,12 +9,22 @@
     padding:15px;
     box-shadow: 5px 10px #D3D3D3;
     transition: transform 0.7s ease-in-out;
-}
-.img-box{
-    border: 1px solid black; 
-    width: 125px;
-    height: 150px;
-}
-a{
-    text-decoration: none;
-}
+	}
+	.img-box{
+		border: 1px solid black; 
+		width: 125px;
+		height: 150px;
+	}
+	a{
+		text-decoration: none;
+	}
+	#sideNav{
+		position: absolute;
+		width: 220px;
+		left:-200px;
+		border: 1px solid black;
+		height: 87%;
+		overflow: auto;
+		background-color:grey;
+		transition: left 0.5s ease-in-out;
+	}
