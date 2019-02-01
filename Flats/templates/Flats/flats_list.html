@@ -2,53 +2,11 @@
 {% block title %}Rent a Flat{% endblock %}
 
 {% block cssfiles %}
-<style>
-	.flat-box{
-    width: 250px;
-    float: left;
-    margin-top: 50px;
-    margin-bottom: 50px;		 
-    background-color: white;
-    margin-left: 85px;
-    border-radius: 18px;
-    padding:15px;
-    box-shadow: 5px 10px #D3D3D3;
-    transition: transform 0.7s ease-in-out;
-	}
-	.img-box{
-		border: 1px solid black; 
-		width: 125px;
-		height: 150px;
-	}
-	a{
-		text-decoration: none;
-	}
-	#sideNav{
-		position: absolute;
-		width: 220px;
-		left:-200px;
-		border: 1px solid black;
-		height: 87%;
-		overflow: auto;
-		background-color:grey;
-		transition: left 0.5s ease-in-out;
-	}
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'Flats/flats_list.css'%}">
 {% endblock %}
 
 {% block content %}
-<div id="sideNav" onmouseover="sideNavOpen()" onmouseout="sideNavClose()" 
-	ondragover="sideNavOpen()" ondragleave="sideNavClose()" ondrop="dragDrop(event)">
-	<center>
-		<div class="sidebar-header" >
-			<h3>Compare flats </h3>
-		</div>
-	</center>
-	<!-- the main nav bar starts here -->
-	<div class="dropper" id="dropper_flat">
-		
-	</div>
-</div>
 
 <div class="container" id="flats">
 	<h1>Available flats</h1>
@@ -63,11 +21,14 @@
 		<a class="flat-link btn btn-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View flat details</a>
 	</div>
 	{% endfor %}
+	<div style="height:20px"></div>
+	<div style="clear:both"></div>
 </div>
 
  {% endblock %}
  
  {% block javascript %}
+	<!-- This is the stuff used for the side navigation bar .-->
 	 <script type="text/javascript">
 		var dropper = document.querySelector('#sideNav');
 		var flats = document.querySelector(".flat-box");
