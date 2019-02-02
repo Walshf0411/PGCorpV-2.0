@@ -1,0 +1,8 @@
+# db files
+*.sqlite3
+
+# pycache files
+*.pyc
+
+# .git 
+.git/
