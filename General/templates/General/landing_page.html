@@ -5,19 +5,29 @@
 {% block cssfiles %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'General/landing_page.css' %}">
+<style>
+	.pimg1{
+		/* internal css to be done for all images that have to be referenced like this */
+		background-image: url("{% static 'General/parallax-background.jpg' %}");
+	}
+</style>
 {% endblock %}
 
 {% block content %}
 <body>
-	<div class="pimg1" id = "pimg1">
-		<div class="ptext">
-			<span class="border">
-				PG CORP 
-			</span>
+	{% load static %}
+	<div class="pimg1" id ="pimg1">
+		<div class="parallax-text-wrapper">
+			<div class="animate" id="animate1">
+				<span id="parallax-title" >PGCORP</span>
+			</div>
+			<div class="animate" id="animate2">
+				<span id="parallax-subtitle" class="animate">Many call it a City Of Dreams,so why not give it a dream start?</span>
+			</div>
 		</div>
 	</div>
 
-	<section class="section section-light">
+	<section class="section">
 		<h2> Section one </h2>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -34,14 +44,7 @@
 		<img src="../../static/homepage/imgPG/home2PG.jpg" alt="image 1" class="example">
 		<img src="../../static/homepage/imgPG/home1PG.jpg" alt="image 2" class="example">
 	</div>
-	 -->>
-	<div class="pimg2">
-		<div class="ptext">
-			<span class="border">
-				LOREM IPSUM 
-			</span>
-		</div>
-	</div>
+	 -->
 	<div id="notif-box">
 		<span id="notif-close" onclick="closeNotif()">x</span>
 		<p id="notif-box-content"></p>
@@ -50,6 +53,14 @@
 {% endblock %}
 
 {% block javascript %}
+<script>
+	// parallax fade on scroll
+	$(document).ready(function(){
+    $(window).scroll(function(){
+        $("#pimg1").css("opacity", 1 - $(window).scrollTop() / $('#pimg1').height());
+    });
+});
+</script>
 <script type="text/javascript">
 	var status = "{{ show_notif }}";
 	function closeNotif() {
