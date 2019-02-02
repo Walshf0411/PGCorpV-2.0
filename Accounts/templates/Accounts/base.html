@@ -30,11 +30,10 @@
 			<li class="nav-item">
 				<a class="nav-link" href="#">About Us</a>
 			</li>
-
-			{% if user.is_authenticated %}
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'all_flats' %}">Rent a flat</a>
 			</li>
+			{% if user.is_authenticated %}
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'post' %}">Post a flat</a>
 			</li>
@@ -75,7 +74,7 @@
 		<div id="footer" class="container">
 			<div class="row">
 				<div class="col-sm-3" id="footer-logo" align="center">
-					<h1 id="logo-text">PGCORP</h1>
+					<div id="logo-text" class="display-4">PGCORP</div>
 				</div>
 				<div class="col-sm-2">
 					<h5 class="footer-heading">Useful Links</h5>

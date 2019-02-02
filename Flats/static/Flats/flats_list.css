@@ -1,30 +1,29 @@
-.flat-box{
-    width: 250px;
-    float: left;
-    margin-top: 50px;
-    margin-bottom: 50px;		 
-    background-color: white;
-    margin-left: 85px;
-    border-radius: 18px;
-    padding:15px;
-    box-shadow: 5px 10px #D3D3D3;
-    transition: transform 0.7s ease-in-out;
-	}
-	.img-box{
-		border: 1px solid black; 
-		width: 125px;
-		height: 150px;
-	}
-	a{
-		text-decoration: none;
-	}
-	#sideNav{
-		position: absolute;
-		width: 220px;
-		left:-200px;
-		border: 1px solid black;
-		height: 87%;
-		overflow: auto;
-		background-color:grey;
-		transition: left 0.5s ease-in-out;
-	}
+.flat{
+    width: 100%;
+    background: #e4e4e4;
+    margin-bottom: 20px;
+    padding: 5px;
+    box-shadow: 0 0 3px 3px #f2f2f2;
+}
+.flat-title{
+    font-size: 20px;
+}
+.flat-address{
+    font-size: 12px;
+}
+.flat:hover{
+    box-shadow: 0 0 3px 3px #cccccc;
+}
+#flats-wrapper {
+    margin-top: 25px;
+    margin-bottom:25px;
+}
+.fa-caret-down{
+    padding: 0;
+    float: right;
+}
+@media (max-width: 600px) {
+    .flats{
+        margin-top: 20px;
+    }
+}

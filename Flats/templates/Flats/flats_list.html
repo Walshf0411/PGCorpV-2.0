@@ -9,20 +9,65 @@
 {% block content %}
 
 <div class="container" id="flats">
-	<h1>Available flats</h1>
-	{% for flat in flats %}
-	<div class="flat-box" align="center" draggable="true">
-		<div class="img-box">
-			<img class="thumbnail" alt="flat image" src="">
-		</div><br>
-		<strong>Title: </strong>{{ flat.title }}<br>
-		<strong>Location: </strong>{{ flat.location }}<br>
-		<strong>Rent: </strong>&#8377; {{ flat.rent }}<br><br>
-		<a class="flat-link btn btn-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View flat details</a>
+	<div class="display-4">Available flats</div>
+	<!-- 
+		Attributes passed to the template
+		title, location, rent
+	-->
+	<div class="container" id="flats-wrapper">
+		<div class="row">
+			<div class="col-sm-3">
+				<div id="accordion">
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" data-toggle="collapse" href="#filter-form1">
+								Filter form1 <i class="fa fa-caret-down"></i>
+							</a>
+						</div>
+						<div id="filter-form1" class="collapse show">
+							<div class="card-body">
+								Lorem ipsum..
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" data-toggle="collapse" href="#filter-form2">
+								Filter form2 <i class="fa fa-caret-down"></i>
+							</a>
+						</div>
+						<div id="filter-form2" class="collapse show">
+							<div class="card-body">
+								Lorem ipsum..
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-9 flats">
+				{% for flat in flats %}
+				<div class="flat">
+					<div class="flat-title">{{ flat.title }}</div>
+					<p class="flat-address">{{ flat.location }}</p>
+					<hr>
+					<div class="row">
+						<div class="col-sm-4" align="center">Detail1</div>
+						<div class="col-sm-4" align="center">Detail2</div>
+						<div class="col-sm-4" align="center">Detail3</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-4 flat-thumbnail"></div>
+						<div class="col-sm-8">
+
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
-	{% endfor %}
-	<div style="height:20px"></div>
-	<div style="clear:both"></div>
 </div>
 
  {% endblock %}
