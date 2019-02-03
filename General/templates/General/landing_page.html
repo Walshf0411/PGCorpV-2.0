@@ -49,6 +49,9 @@
 		<span id="notif-close" onclick="closeNotif()">x</span>
 		<p id="notif-box-content"></p>
 	</div>
+	<a id="return-top" href="javascript:void(0)">
+		<i class="fa fa-caret-up" aria-hidden="true"></i>
+	</a>
 </body>
 {% endblock %}
 
@@ -56,17 +59,24 @@
 <script>
 	$("#navbar").addClass("fixed-top");
 </script>
+
 <script>
 	// navbar show on scroll
+	$("#return-top").click(function() {
+		$("body, html").animate({
+			scrollTop : 0                       
+		}, 700);
+	});
 	window.onscroll = function() {
 		if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
-			// hdie the navbar
-			$("#navbar").css("top", "0px");
-		} else {
 			// show the navbar
+			$("#navbar").css("top", "0px");
+			$("#return-top").css("opacity", 1);
+		} else {
+			// hide the navbar
 			var navbarHeight = 0 - $("#navbar").outerHeight();
-			console.log(navbarHeight);
 			$("#navbar").css("top", navbarHeight.toString() + "px");
+			$("#return-top").css("opacity", 0);
 		}
 	}
 </script>

@@ -159,6 +159,40 @@ body,html{
     }
 }
 #navbar{
-	top: -100px; 
-	transition: top 0.6s;
+    top: -100px; 
+    -webkit-transition: top 0.6s;
+    -moz-transition: top 0.6s;
+    -o-transition: top 0.6s;
+    transition: top 0.6s;
+}
+#return-top{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    bottom: 20px;
+    right: 20px;
+    background:  #bfbfbf;
+    border-radius: 25px;
+    text-decoration: none;
+    color:black;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+#return-top:hover {
+    -webkit-transform: scale(1.5, 1.5);
+    -moz-transform: scale(1.5, 1.5);
+    -o-transform: scale(1.5, 1.5);
+    transform: scale(1.5, 1.5);
+}
+
+#return-top i{
+    position: relative;
+    padding: 0;
+    top:13px;
 }
