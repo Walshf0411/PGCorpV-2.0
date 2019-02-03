@@ -24,7 +24,7 @@
 								Filter form1 <i class="fa fa-caret-down"></i>
 							</a>
 						</div>
-						<div id="filter-form1" class="collapse show">
+						<div id="filter-form1" class="collapse show filter-form">
 							<div class="card-body">
 								Lorem ipsum..
 							</div>
@@ -37,7 +37,7 @@
 								Filter form2 <i class="fa fa-caret-down"></i>
 							</a>
 						</div>
-						<div id="filter-form2" class="collapse show">
+						<div id="filter-form2" class="collapse show filter-form">
 							<div class="card-body">
 								Lorem ipsum..
 							</div>
@@ -58,7 +58,10 @@
 					</div>
 					<hr>
 					<div class="row">
-						<div class="col-sm-4 flat-thumbnail"></div>
+						<div class="col-sm-4 flat-thumbnail">
+							{% load static %}
+							<img src="{% static 'General/parallax-background.jpg' %}" alt="flat-image" height="100%" width="100%">
+						</div>
 						<div class="col-sm-8">
 
 						</div>
@@ -73,6 +76,15 @@
  {% endblock %}
  
  {% block javascript %}
+	<script>
+		$(document).ready(function(){
+			if (window.screen.width <= 600) {
+				// this is to keep the accordion tabs closed.
+				$(".filter-form").removeClass("show");
+				$(".filter-form").addClass("collapsed");
+			}
+		});
+	</script>
 	<!-- This is the stuff used for the side navigation bar .-->
 	 <script type="text/javascript">
 		var dropper = document.querySelector('#sideNav');

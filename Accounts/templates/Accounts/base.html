@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <!-- Navbar code goes here -->
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
+<nav class="navbar navbar-expand-sm bg-light navbar-light" id="navbar" role="navigation">
 	<a href="{% url 'land_page' %}" class="navbar-brand">PGCORP</a>
 
 	<button class="navbar-toggler" type="button" data-target="#collapseNavbar" data-toggle="collapse">
@@ -127,7 +127,6 @@
 </footer>
 
 </html>
-
 <script type="text/javascript">
 	// this is the script that generates suggestions for the search bar
 	$("#search").focus(function() {
