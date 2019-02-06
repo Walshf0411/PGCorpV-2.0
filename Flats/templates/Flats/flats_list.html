@@ -52,8 +52,8 @@
 					<p class="flat-address">{{ flat.location }}</p>
 					<hr>
 					<div class="row">
-						<div class="col-sm-4" align="center">Detail1</div>
-						<div class="col-sm-4" align="center">Detail2</div>
+						<div class="col-sm-4 right-border" align="center">Detail1</div>
+						<div class="col-sm-4 right-border" align="center">Detail2</div>
 						<div class="col-sm-4" align="center">Detail3</div>
 					</div>
 					<hr>
@@ -62,8 +62,18 @@
 							{% load static %}
 							<img src="{% static 'General/parallax-background.jpg' %}" alt="flat-image" height="100%" width="100%">
 						</div>
-						<div class="col-sm-8">
-
+						<div class="col-sm-8" align=center>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="more-details right-border">Details 1</div>
+									<div class="more-details right-border">Details 2</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="more-details">Details 3</div>
+									<div class="more-details">Details 4</div>
+								</div>
+							</div>
+							<button class="btn btn-success"><a href="{% url 'flat_detail' flat.hash flat.slug %}">Get Details</a></button>
 						</div>
 					</div>
 				</div>

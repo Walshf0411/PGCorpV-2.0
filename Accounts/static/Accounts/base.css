@@ -62,7 +62,18 @@ body{
   background: #bb0000;
   color: white;
 }
+.progress-indicator{
+	position: fixed;
+	width: 100%;
+	height: 8px;
+	background: white;
+}
 
+#mybar{
+	height: 8px;
+	background-color: #999999;
+	width: 100%;
+}
 .fa-instagram {
   background: #125688;
   color: white;
@@ -123,6 +134,10 @@ li{
 .footer-link:hover{
 	color: black;
 }
+
+/*
+	css for progress bar 
+*/
 @media (max-width:600px) {
 	.footer-heading{
 		margin-top: 5px;

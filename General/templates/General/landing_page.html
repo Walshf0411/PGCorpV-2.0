@@ -51,6 +51,7 @@
 {% endblock %}
 
 {% block javascript %}
+
 <script>
 	$("#navbar").addClass("fixed-top");
 </script>
@@ -68,11 +69,16 @@
 			$("#navbar").css("top", "0px");
 			$("#return-top").css("opacity", 1);
 		} else {
-			// hide the navbar
+			// hide the navbar margin top na haaa ek min ruk
 			var navbarHeight = 0 - $("#navbar").outerHeight();
 			$("#navbar").css("top", navbarHeight.toString() + "px");
 			$("#return-top").css("opacity", 0);
-		}
+		}//same effect hon chahiye
+		$('.progress-indicator').css("margin-top", $('#navbar').outerHeight());
+		var winscroll = document.body.scrollTop || document.documentElement.scrollTop;
+		var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+		var scrolled = (winscroll/height) * 100;
+		document.getElementById('mybar').style.width = scrolled + "%";
 	}
 </script>
 <script>
