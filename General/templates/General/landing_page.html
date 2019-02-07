@@ -3,6 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block cssfiles %}
+<!--
+	<style>
+	
+</style>
+-->
 {% load static %}
 <link rel="stylesheet" href="{% static 'General/landing_page.css' %}">
 <style>
@@ -24,6 +29,15 @@
 			<div class="animate" id="animate2">
 				<span id="parallax-subtitle" class="animate">Many call it a City Of Dreams,so why not give it a dream start?</span>
 			</div>
+			<div class="search-box">
+				<!-- enter the url accordingly -->
+				<form action="{ url '' }" class="search">
+					<input type="text" class="search-field" placeholder="Location search" autofocus>
+					<button type="button" class="btn btn-info" id ="search-button">
+						<span class="glyphicon glyphicon-search"></span>SEARCH
+					</button>
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -32,7 +46,6 @@
 		<p>
 			We have developed a portal for both landlords and tenants to rent out their homes and also for renting homes.Residency owners can post their flats on the portal along with specifications of their respective residencies.Also landlords can specify different requirements about tenants expected by them.On similar lines,aspirants who are in search of urgent homes to live in can search homes as needed by them.The best match will be provided for the tenants.Tenants can further contact the landlords for further enquiries and in such a manner process is completed.
 		</p>
-		<input type="text" class="search-box">
 	</section>
 
 	<!-- 
