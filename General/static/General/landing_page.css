@@ -37,7 +37,12 @@ body,html{
     padding: 6px;
     size: 30px;
     width: 25em;
+    border-bottom: 1px solid black;
+    outline:none;
     /**/    
+}
+.search input:focus{
+    border-bottom: 1px solid blue;
 }
 
 #search-button{
