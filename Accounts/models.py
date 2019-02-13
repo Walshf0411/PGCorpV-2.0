@@ -6,5 +6,13 @@ from django.contrib.auth.models import User
 # we have extended the default django User model, so that we can add fields 
 # in future.
 
+HOUSE_OWNER = 1
+PAYING_GUEST = 2
+USER_TYPE_CHOICES = (
+	(HOUSE_OWNER, 'House Owner'),
+	(PAYING_GUEST, 'Paying Guest') 
+)
+
 class Pgcorp_user(User):
-	pass
+	user_type = models.IntegerField(choices=USER_TYPE_CHOICES)
+

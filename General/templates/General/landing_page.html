@@ -31,7 +31,7 @@
 			</div>
 			<div class="search-box">
 				<!-- enter the url accordingly -->
-				<form action="{ url '' }" class="search">
+				<form action="#" class="search">
 					<input type="text" class="search-field" placeholder="Location search" autofocus>
 					<button type="button" class="btn btn-info" id ="search-button">
 						<span class="glyphicon glyphicon-search"></span>SEARCH
@@ -94,14 +94,6 @@
 		var scrolled = (winscroll/height) * 100;
 		document.getElementById('mybar').style.width = scrolled + "%";
 	}
-</script>
-<script>
-	// parallax fade on scroll
-	$(document).ready(function(){
-    $(window).scroll(function(){
-        $("#pimg1").css("opacity", 1 - $(window).scrollTop() / $('#pimg1').height());
-    });
-});
 </script>
 <script type="text/javascript">
 	var status = "{{ show_notif }}";

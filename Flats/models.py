@@ -2,23 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 from General.general import getHash
 from django.utils.text import slugify
-
+from django.core.validators import MinValueValidator
 # Create your models here.
 
 class FlatDetails(models.Model):
 	'''This is a seperate table as the details can be comfortably increased in future'''
 	# The id of the flat for which we have to store the details
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	LOCATION_CHOICES = (
-		('Mumbai', 'Mumbai'), 
-		('Pune', 'Pune'), 
-		('Nashik', 'Nashik'), 
-		) 
-	location = models.CharField(max_length=30, choices=LOCATION_CHOICES)
+	location = models.CharField(max_length=30)
 	title = models.CharField(max_length=30, default="default")
 	hash = models.CharField(max_length=6)
-	rent =  models.IntegerField()
-	slug = models.SlugField(null=True) 
+	rent =  models.IntegerField(validators=(MinValueValidator(limit_value=200), ))
+	slug = models.SlugField(null=True)
 
 	def save(self, *args, **kwargs):
 		hash = getHash(6)

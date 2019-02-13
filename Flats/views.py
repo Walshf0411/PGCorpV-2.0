@@ -3,13 +3,14 @@ from django.views.generic.edit import CreateView
 from django.views.generic import DetailView, ListView, View
 from .models import FlatDetails
 from django.urls import reverse_lazy
+from . import forms
 
 # Create your views here.
 class FlatPostView(CreateView):
 	model = FlatDetails
-	fields = ['title', 'location', 'rent']
 	template_name = 'Flats/flats_post.html'
 	success_url = reverse_lazy("land_page")
+	form_class = forms.FlatPostForm
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user
@@ -25,7 +26,6 @@ class FlatDetailsView(DetailView):
 		context = super().get_context_data()
 		user = context['flatdetails'].user
 		context.update({"user": user})
-		print(context)
 		return context
 
 	def get_object(self):
