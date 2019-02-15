@@ -17,14 +17,14 @@ class FlatDetails(models.Model):
 	total_rent = models.IntegerField(validators=(MinValueValidator(limit_value=200), ))
 	deposit = models.CharField(max_length=10)
 	possession = models.CharField(max_length=20)
-	datetime = models.DateField(auto_now=True)
 	total_rooms = models.IntegerField(validators=(MinValueValidator(limit_value=1), ))
 	property_type = models.CharField(max_length=30)
 	floor = models.CharField(max_length=4)
-	parking = models.BooleanField(default=False)
+	parking_options = models.CharField(max_length=30, default="No Parking")
 	number_of_guests = models.IntegerField(validators=(MinValueValidator(limit_value=1), ))
 	hash = models.CharField(max_length=6)
 	slug = models.SlugField(null=True)
+	datetime = models.DateTimeField(auto_now=True, editable=True)
 
 	def save(self, *args, **kwargs):
 		hash = getHash(6)
@@ -36,6 +36,6 @@ class FlatDetails(models.Model):
 		super().save(args, kwargs)
 
 	def get_absolute_url(self):
-		base_url = "/flats/{}/{}/" # flats/<hash>/<slug>/
+		base_url = "/flats/{}/{}/"  # flats/<hash>/<slug>/
 		return base_url.format(self.hash, self.slug)
 

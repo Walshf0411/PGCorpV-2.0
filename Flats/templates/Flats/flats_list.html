@@ -49,12 +49,23 @@
 				{% for flat in flats %}
 				<div class="flat">
 					<div class="flat-title">{{ flat.title }}</div>
-					<p class="flat-address">{{ flat.location }}</p>
+					<p class="flat-address">{{ flat.address }}</p>
 					<hr>
 					<div class="row">
-						<div class="col-sm-4 right-border" align="center">Detail1</div>
-						<div class="col-sm-4 right-border" align="center">Detail2</div>
-						<div class="col-sm-4" align="center">Detail3</div>
+						<div class="col-sm-4 right-border" align="center">
+							{{ flat.total_space }}<br>
+							<strong>Total Space</strong>
+						</div>
+						<div class="col-sm-4 right-border" align="center">
+							{{ flat.total_rent }}<br>
+							<strong title="This is the total rent of the flat. If the number of guests is more than 1, this price will be divided by the number of guests">
+								Total Rent
+							</strong>
+						</div>
+						<div class="col-sm-4" align="center">
+							{{ flat.possession }}<br>
+							<strong>Possession</strong>
+						</div>
 					</div>
 					<hr>
 					<div class="row">
@@ -65,15 +76,27 @@
 						<div class="col-sm-8" align=center>
 							<div class="row">
 								<div class="col-sm-6">
-									<div class="more-details right-border">Details 1</div>
-									<div class="more-details right-border">Details 2</div>
+									<div class="more-details right-border">
+										{{ flat.total_rooms }}<br>
+										<strong>Number of rooms</strong>
+									</div>
+									<div class="more-details right-border">
+										{{ flat.property_type }}<br>
+										<strong>Property Type</strong>
+									</div>
 								</div>
 								<div class="col-sm-6">
-									<div class="more-details">Details 3</div>
-									<div class="more-details">Details 4</div>
+									<div class="more-details">
+										{{ flat.floor }}<br>
+										<strong>Floor</strong>
+									</div>
+									<div class="more-details">
+										{{flat.parking_options}}<br>
+										<strong>Parking</strong>
+									</div>
 								</div>
 							</div>
-							<button class="btn btn-success"><a href="{% url 'flat_detail' flat.hash flat.slug %}">Get Details</a></button>
+							<button class="btn btn-lg btn-info"><a href="{% url 'flat_detail' flat.hash flat.slug %}">Get Details</a></button>
 						</div>
 					</div>
 				</div>

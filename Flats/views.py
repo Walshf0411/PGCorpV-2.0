@@ -17,6 +17,7 @@ class FlatPostView(CreateView):
 		self.request.session['flat_posted'] = True
 		return super().form_valid(form)
 
+
 class FlatDetailsView(DetailView):
 	model = FlatDetails
 	template_name = 'Flats/flat_details.html'
@@ -37,6 +38,8 @@ class FlatsListView(ListView):
 	model = FlatDetails
 	template_name = "Flats/flats_list.html"
 	context_object_name = "flats"
+	queryset = FlatDetails.objects.order_by("datetime")
+
 
 class ContactOwnerView(View):
 	

@@ -2,8 +2,25 @@ from django import forms
 from .models import FlatDetails
 
 PROPERTY_CHOICES = (
-    (("apartment_flat"), ("Apartment/Flat")), 
+    (("Apartment/Flat"), ("Apartment/Flat")), 
 )
+PARKING_OPTIONS = (
+    ("No parking", "No Parking"), 
+    ("2 Wheeler", "2 Wheeler"), 
+    ("4 Wheeler", "4 Wheeler"), 
+)
+
+POSESSION_CHOICES = (
+    ("Immediately", "Immediately"), 
+    ("After 1 Month.", "After 1 Month."), 
+    ("After 1 to 3 Months", "After 1 to 3 Months"), 
+    ("After 3 to 9 Months", "After 3 to 9 Months"),
+    ("After 6 to 9 Months", "After 6 to 9 Months"),
+    ("After 9 to 12 Months", "After 9 to 12 Months"),
+    ("After 1 year or above", "After 1 year or above"),
+)
+
+
 class FlatPostForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(
         attrs={
@@ -47,7 +64,23 @@ class FlatPostForm(forms.ModelForm):
         ), 
         choices=PROPERTY_CHOICES
     )
-
+    parking_options = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                "class": "form-control"
+            }
+        ), 
+        choices=PARKING_OPTIONS
+    )
+    possession = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                "class": "form-control"
+            }
+        ), 
+        choices=POSESSION_CHOICES
+    )
+    number_of_guests = forms.IntegerField(help_text="All the guest living in the house will pay equal rent, that will be deduced by dividing the total rent by the number of guests.")
     class Meta:
-        fields = ['title', 'address', 'description', 'total_space', 'total_rent', 'deposit', 'possession', 'total_rooms', 'property_type', 'floor', 'parking', 'number_of_guests']
+        fields = ['title', 'address', 'description', 'total_space', 'total_rent', 'deposit', 'possession', 'total_rooms', 'property_type', 'floor', 'parking_options', 'number_of_guests']
         model = FlatDetails
