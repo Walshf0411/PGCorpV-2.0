@@ -73,6 +73,30 @@ body,html{
     padding-right: 8px;
 }
 
+.nobroker i{
+    font-size: 70px !important;
+    margin:0 auto; 
+    padding: 0;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.owners i{
+    font-size: 70px !important;
+    margin:0 auto; 
+    padding: 0;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.rentees i{
+    font-size: 70px !important;
+    margin:0 auto; 
+    padding: 0;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
 .section-light{
     background-color: #f4f4f4;
     color:#666;
