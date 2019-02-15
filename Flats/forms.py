@@ -47,6 +47,7 @@ class FlatPostForm(forms.ModelForm):
         ), 
         choices=PROPERTY_CHOICES
     )
+
     class Meta:
         fields = ['title', 'address', 'description', 'total_space', 'total_rent', 'deposit', 'possession', 'total_rooms', 'property_type', 'floor', 'parking', 'number_of_guests']
         model = FlatDetails

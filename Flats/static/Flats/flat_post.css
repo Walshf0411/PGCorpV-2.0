@@ -9,14 +9,16 @@
     width: 100%;
 }
 #form-container {
-    width: 80%;
+    width: 100%;
     justify-content: center;
 }
-
-.col-sm-3 label{
+label{
     font-size: 17px;
     font-weight: bold;
 }
 #button-div{
     margin-bottom: 12px; 
+}
+#no-label{
+    font-weight: unset;
 }

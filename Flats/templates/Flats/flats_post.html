@@ -9,24 +9,50 @@
 {% block content %}
 <div class="container" id="main-container">
 	<h1 class="display-4" id="title">Post a flat for free.</h1>
-	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt mollitia nihil fugiat libero voluptas expedita labore. Eius aliquam sunt aperiam soluta dolores, eaque eveniet cum, dicta doloribus omnis neque id.</p>	
+	<p>
+		Enter the details for the flat you wish to post to <strong>Paying Guests</strong>. Enter accurate details to attract Paying guests to view your flat.
+	</p>	
 	<div class="container" id="form-container">
 		<form action="{% url 'post' %}" method="POST">
 			{% csrf_token %}
-			{% for field in form %}
-			
-			{% if field.error_messages %}
-			<div class="alert alert-danger alert-dismissible">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<strong>Error!</strong> {{ field.error_messages }}
-				<div style="clear:both"></div>
+			{% load crispy_forms_tags %}
+			<div class="form-main-container">
+				<div class="row">
+					<div class="col-sm-6">{{ form.title|as_crispy_field }}</div>
+					<div class="col-sm-6">{{ form.address|as_crispy_field }}</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">{{ form.description|as_crispy_field }}</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">{{ form.total_space|as_crispy_field }}</div>
+					<div class="col-sm-6">{{ form.total_rent|as_crispy_field }}</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">{{ form.deposit|as_crispy_field }}</div>
+					<div class="col-sm-6">{{ form.possession|as_crispy_field }}</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">{{ form.total_rooms|as_crispy_field }}</div>
+					<div class="col-sm-6">{{ form.property_type|as_crispy_field }}</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">{{ form.floor|as_crispy_field }}</div>
+					<div class="col-sm-6">
+						{{ form.parking }}
+						<label id="no-label">Check this box if your apartment has parking facility</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">{{ form.number_of_guests|as_crispy_field }}</div>
+				</div>
 			</div>
-			{% endif %}
-			<div class="row form_input">
-				<div class="col-sm-3">{{ field.label_tag }}</div>
-				<div class="col-sm-9">{{ field }}</div>
-			</div>
-			{% endfor %}
 			<div align=center id="button-div">
 				<button type="submit" class="btn btn-success btn-lg">Submit</button>
 			</div>
