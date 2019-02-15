@@ -17,6 +17,7 @@ body,html{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-blend-mode:screen;
+    display: flex;
 }
 @media (max-width:600px){
     .pimg1{
@@ -30,13 +31,32 @@ body,html{
     padding : 50px 80px;
 }
 
+.search
+{
+    background-color: rgba(0,0,0,0.4);
+    width: 30%;
+    border: 1px solid gray;
+    border-radius: 15px;
+    margin: 20px auto;
+    padding:10px;
+    justify-content: center;
+    align-items: center;
+    color: white; 
+}
+
+.search ::-webkit-input-placeholder{
+    color: white;
+}
+
 .search-field{
     background:none ;
     border:none;
+    color: white;
+    margin: 0 auto;
     margin-top: 10px;
     padding: 6px;
     size: 30px;
-    width: 25em;
+    width: 70%;
     border-bottom: 1px solid black;
     outline:none;
     /**/    
@@ -47,6 +67,7 @@ body,html{
 
 #search-button{
     padding: 10px;
+    border-radius: 50%;
 }
 #search-button span{
     padding-right: 8px;
