@@ -1,0 +1,9 @@
+#form-container {
+    box-shadow: 0 0 3px 3px #f2f2f2;
+    margin: 12px 12px;
+    padding: 7px;
+}
+
+#form_input{
+    margin: 7px;
+}

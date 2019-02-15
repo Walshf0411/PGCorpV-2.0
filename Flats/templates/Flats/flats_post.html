@@ -1,15 +1,26 @@
 {% extends 'Accounts/base.html' %}
 {% block title %}Post a flat for free{% endblock %}
 
+{% block cssfiles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'Flats/flat_post.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
-		<div class="row">
-			<div class="col-sm-4" style="margin-top: 80px;">
-				<h1>Post a Flat for Rent</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+	<h1>Post a flat for free.</h1>
+	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt mollitia nihil fugiat libero voluptas expedita labore. Eius aliquam sunt aperiam soluta dolores, eaque eveniet cum, dicta doloribus omnis neque id.</p>	
+	<div id="form-container" class="container">
+		<form action="{% url 'post' %}" method="POST">
+			{% csrf_token %}
+			{% for field in form %}
+			<div class="row" id="form_input">
+				<div class="col-sm-4">{{ field.label_tag }}</div>
+				<div class="col-sm-8">{{ field }}</div>
 			</div>
-			<div class="col-sm-8">{% include 'General/form_template.html' %}</div>
-		</div>
+			{% endfor %}
+			<button type="submit" class="btn btn-success">Submit</button>
+		</form>		
 	</div>
+</div>
 {% endblock %}
