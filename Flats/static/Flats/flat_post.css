@@ -1,9 +1,22 @@
-#form-container {
+#main-container {
     box-shadow: 0 0 3px 3px #f2f2f2;
-    margin: 12px 12px;
-    padding: 7px;
+    width: 80%;
+}
+.form_input{
+    margin: 7px;
+}
+.form_input input, textarea, select{
+    width: 100%;
+}
+#form-container {
+    width: 80%;
+    justify-content: center;
 }
 
-#form_input{
-    margin: 7px;
+.col-sm-3 label{
+    font-size: 17px;
+    font-weight: bold;
+}
+#button-div{
+    margin-bottom: 12px; 
 }
