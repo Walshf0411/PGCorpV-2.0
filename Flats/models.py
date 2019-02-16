@@ -11,7 +11,7 @@ class FlatDetails(models.Model):
 	# The id of the flat for which we have to store the details
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	title = models.CharField(max_length=30)
-	address = models.CharField(max_length=30)
+	address = models.CharField(max_length=150)
 	description = models.CharField(max_length=200)
 	total_space = models.CharField(max_length=10)
 	total_rent = models.IntegerField(validators=(MinValueValidator(limit_value=200), ))
@@ -39,3 +39,7 @@ class FlatDetails(models.Model):
 		base_url = "/flats/{}/{}/"  # flats/<hash>/<slug>/
 		return base_url.format(self.hash, self.slug)
 
+
+class FavouriteFlats(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	flat = models.ForeignKey(FlatDetails, on_delete=models.CASCADE)

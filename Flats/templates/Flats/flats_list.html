@@ -96,7 +96,16 @@
 									</div>
 								</div>
 							</div>
-							<button class="btn btn-lg btn-info"><a href="{% url 'flat_detail' flat.hash flat.slug %}">Get Details</a></button>
+							<div class="row">
+								<div class="col-sm-6 offset-sm-6">
+									<button class="btn btn-lg btn-info">
+										<a href="{% url 'flat_detail' flat.hash flat.slug %}">Get Details</a>
+									</button>
+									<a href="#">
+										<i class="fa fa-heart-o" aria-hidden="true"></i>
+									</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

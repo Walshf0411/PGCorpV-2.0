@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from django.views.generic import DetailView, ListView, View
-from .models import FlatDetails
+from .models import FlatDetails, FavouriteFlats
 from django.urls import reverse_lazy
 from . import forms
+from django.response import JSONResponse
+
 
 # Create your views here.
 class FlatPostView(CreateView):
@@ -33,6 +35,7 @@ class FlatDetailsView(DetailView):
 		flat = FlatDetails.objects.get(hash=self.kwargs["hash"])
 		return flat
 
+
 class FlatsListView(ListView):
 	'''List of all the flats'''
 	model = FlatDetails
@@ -47,3 +50,4 @@ class ContactOwnerView(View):
 		if hash in kwargs:
 			hash = kwargs['hash']
 
+			

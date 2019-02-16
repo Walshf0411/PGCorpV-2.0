@@ -15,4 +15,4 @@ USER_TYPE_CHOICES = (
 
 class Pgcorp_user(User):
 	user_type = models.IntegerField(choices=USER_TYPE_CHOICES)
-
+	
