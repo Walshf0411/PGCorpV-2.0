@@ -22,7 +22,7 @@
 						<strong>Total Space</strong>
 					</div>
 					<div class="col-sm-4 right-border main-items" align="center">
-						{{ object.total_rent }}<br>
+						&#8377;&nbsp;{{ object.total_rent }}<br>
 						<strong title="This is the total rent of the flat. If the number of guests is more than 1, this price will be divided by the number of guests">
 							Total Rent
 						</strong>
@@ -59,32 +59,80 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="container" align=center>
-				<div class="row description-div">
-					<div class="col-sm-6 description-div">
-						<strong class="about-head">About the flat</strong>
-						<div class="line"></div>
-						<p>{{object.description}}</p>
+
+		<div class="row" align=center id="about-flat">
+			<div class="col-sm-6 description-div">
+				<strong class="about-head">About the flat</strong>
+				<div class="line"></div>
+				<p>{{object.description}}</p>
+			</div>
+			<div class="col-sm-6 description-div">
+				<div class="row" align=center>
+					<div class="col-sm-4">
+						{{ object.number_of_guests }}<br>
+						<strong>Number of occupants required.</strong>
 					</div>
-					<div class="col-sm-6 description-div">
-						<div class="row" align=center>
-							<div class="col-sm-4">
-								1<br>
-								<strong>Number of occupants required.</strong>
-							</div>
-							<div class="col-sm-4">
-								0<br>
-								<strong>Number of people intrested in this property.</strong>
-							</div>
-							<div class="col-sm-4">
-								0<br>
-								<strong>Number of occupants in this flat.</strong>
-							</div>
-						</div>
+					<div class="col-sm-4">
+						0<br>
+						<strong>Number of people intrested in this property.</strong>
+					</div>
+					<div class="col-sm-4">
+						0<br>
+						<strong>Number of occupants in this flat.</strong>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<div class="container" align=center id="user-actions-div">
+			<button class="btn btn-lg btn-info">
+				Apply for reservation
+			</button>
+			{% if object.liked %}
+				<button class="btn btn-lg btn-danger" id="like-button">
+					<span class="glyphicon glyphicon-heart"></span>
+					&nbsp;{{ object.favouriteflats_set.count }}
+				</button>
+			{% else %}
+				{% if user.is_authenticated %}
+					<button class="btn btn-lg btn-danger" id="like-button">
+						<span class="glyphicon glyphicon-heart-empty"></span>
+						&nbsp;{{ object.favouriteflats_set.count }}
+					</button>
+				{% else %}
+					<!-- Set onclick to display login modal-->
+					<button class="btn btn-lg btn-danger" onclick="alert('Login to continue');">
+						<span class="glyphicon glyphicon-heart-empty"></span>
+						&nbsp;{{ object.favouriteflats_set.count }}
+					</button>&nbsp;
+				{% endif %}
+			{% endif %}
+		</div>
 	</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+	$(document).ready(function() {
+		$("#like-button").click(function() {
+			$.ajax({
+				url: '{% url "like" %}',
+				data: {
+					'user': "{{ user.username }}",
+					'flat': "{{ object.hash }}", 
+				},
+				dataType: 'json',
+				success: function (data) {
+					if (data.liked) {
+						$("#like-button span").removeClass("glyphicon-heart-empty");
+						$("#like-button span").addClass("glyphicon-heart");
+					}else{
+						$("#like-button span").addClass("glyphicon-heart-empty");
+						$("#like-button span").removeClass("glyphicon-heart");
+					}
+				}
+			})
+		});
+	})
+</script>
 {% endblock %}

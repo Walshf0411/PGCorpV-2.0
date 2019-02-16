@@ -6,4 +6,5 @@ urlpatterns = [
 	url(r'(?P<hash>[\w-]{6})/(?P<slug>[\w-]+)/$', views.FlatDetailsView.as_view(), name='flat_detail'),
 	url(r'all/$', views.FlatsListView.as_view(), name='all_flats'),
 	url(r'(?P<hash>[\w-]{6})/(?P<slug>[\w-]+)/contact_sowner/$', views.ContactOwnerView.as_view(), name='contact_owner'),
+	url(r'like/$', views.LikeFlat.as_view(), name='like'), 	
 ]
