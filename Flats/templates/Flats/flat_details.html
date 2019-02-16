@@ -10,7 +10,7 @@
 	<div class="container" id="main-container">
 		<div class="row">
 			<div class="col-sm-6 image-gallery">
-				<img src="{% static 'General/parallax-background.jpg'%}" alt="">
+				<img src="{% static 'General/parallax-background.jpg'%}" alt="image gallery" class="image-responsive">
 			</div>
 			<div class="col-sm-6">
 				<h3 class="display-4">{{object.title}}</h3>
@@ -60,15 +60,28 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="container">
+			<div class="container" align=center>
 				<div class="row description-div">
 					<div class="col-sm-6 description-div">
-						<h3>About the flat</h3>
+						<strong class="about-head">About the flat</strong>
 						<div class="line"></div>
 						<p>{{object.description}}</p>
 					</div>
 					<div class="col-sm-6 description-div">
-						somethings
+						<div class="row" align=center>
+							<div class="col-sm-4">
+								1<br>
+								<strong>Number of occupants required.</strong>
+							</div>
+							<div class="col-sm-4">
+								0<br>
+								<strong>Number of people intrested in this property.</strong>
+							</div>
+							<div class="col-sm-4">
+								0<br>
+								<strong>Number of occupants in this flat.</strong>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
