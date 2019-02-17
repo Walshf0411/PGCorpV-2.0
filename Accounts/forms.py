@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Pgcorp_user
 from . import models
 
@@ -15,3 +15,7 @@ class UserSignupForm(UserCreationForm):
 	class Meta:
 		fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'user_type']
 		model = Pgcorp_user
+
+
+class UserLoginForm(AuthenticationForm):
+	pass

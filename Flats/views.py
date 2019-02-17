@@ -7,6 +7,7 @@ from . import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from Accounts.forms import UserLoginForm, UserSignupForm
 
 
 # Create your views here.
@@ -29,8 +30,11 @@ class FlatDetailsView(DetailView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super().get_context_data()
-		user = context['flatdetails'].user
-		context.update({"user": user})
+		if not self.request.user.is_authenticated:
+			context.update({
+				"login_form": UserLoginForm(), 
+				"signup_form": UserSignupForm(), 
+			})
 		return context
 
 	def get_object(self):
@@ -38,10 +42,8 @@ class FlatDetailsView(DetailView):
 		if self.request.user.is_authenticated:
 			try:
 				FavouriteFlats.objects.get(user=self.request.user, flat=flat)
-				print("liked, icon should be filled.")
 				flat.liked = True
 			except ObjectDoesNotExist:
-				print("no liked, icon shoudl not be filled")
 				flat.liked = False
 
 		return flat
@@ -74,21 +76,29 @@ class LikeFlat(View):
 					try:
 						relation = FavouriteFlats.objects.get(user=self.request.user, flat=flat)
 						relation.delete()
+						count = FavouriteFlats.objects.filter(flat=flat).count()
 						return JsonResponse({
 							'liked': False,
+							'count': count
 						})
 					except ObjectDoesNotExist:
 						# Not already liked
 						FavouriteFlats.objects.create(user=self.request.user, flat=flat)
+						count = FavouriteFlats.objects.filter(flat=flat).count()
 						return JsonResponse({
 							'liked': True,
+							'count': count
 						})
 
 				except ObjectDoesNotExist:
+					count = FavouriteFlats.objects.filter(flat=flat).count()
 					return JsonResponse({
 							'liked': False,
+							'count': count,
 						})
 			else:
+				count = FavouriteFlats.objects.filter(flat=flat).count()
 				return JsonResponse({
 					'liked': False,
+					'count': count,
 				})

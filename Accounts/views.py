@@ -4,7 +4,7 @@ from django.contrib.auth.views import (
 	LogoutView,
 	PasswordChangeView, 
 	PasswordChangeDoneView)
-from .forms import UserSignupForm
+from .forms import UserSignupForm, UserLoginForm
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
@@ -17,6 +17,8 @@ from Flats.models import FlatDetails
 
 # we have extended this default authentication class to add customization
 # also we extend django's  to get our data automatically saved to the db
+
+
 class UserSignupView(CreateView):
 	template_name = 'Accounts/signup.html'
 	form_class = UserSignupForm
@@ -26,17 +28,21 @@ class UserSignupView(CreateView):
 		self.request.session['user_created'] = True
 		return super().form_valid(form)
 
+
 class UserLoginView(LoginView):
 	template_name = 'Accounts/login.html'
+	form_class = UserLoginForm
 
 	def form_valid(self, form):
 		self.request.session['user_logged_in'] = True
 		return super().form_valid(form)
 
+
 class UserLogoutView(LogoutView):
 	
 	def dispatch(self, request, *args, **kwargs):
 		return super().dispatch(request, *args, **kwargs)
+
 
 class UserProfileView(TemplateView):
 	template_name = 'Accounts/user_profile.html'
