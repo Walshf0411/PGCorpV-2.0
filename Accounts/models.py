@@ -13,6 +13,7 @@ USER_TYPE_CHOICES = (
 	(PAYING_GUEST, 'Paying Guest') 
 )
 
+
 class Pgcorp_user(User):
 	user_type = models.IntegerField(choices=USER_TYPE_CHOICES)
 	

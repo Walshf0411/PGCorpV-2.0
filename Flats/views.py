@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from django.views.generic import DetailView, ListView, View
-from .models import FlatDetails, FavouriteFlats
+from .models import FlatDetails, FavouriteFlats, FlatApplication
 from django.urls import reverse_lazy
 from . import forms
 from django.core.exceptions import ObjectDoesNotExist
@@ -55,7 +55,7 @@ class FlatsListView(ListView):
 	model = FlatDetails
 	template_name = "Flats/flats_list.html"
 	context_object_name = "flats"
-	queryset = FlatDetails.objects.order_by("date_of_posting")
+	queryset = FlatDetails.objects.order_by("-date_of_posting")
 
 
 class ContactOwnerView(View):
@@ -97,9 +97,30 @@ class LikeFlat(View):
 							'count': count,
 						})
 			else:
-				count = FavouriteFlats.objects.filter(flat=flat).count()
 				return JsonResponse({
 					'liked': False,
-					'count': count,
+					'count': 0,
 				})
 
+
+class FlatApplyView(View):
+	
+	def get(self, request, *args, **kwargs):
+		if self.request.user.is_authenticated:
+			if 'flat' in self.request.GET:
+				try:
+					flat = FlatDetails.objects.get(hash=self.request.GET['flat'])
+					application, created = FlatApplication.objects.get_or_create(user=self.request.user, flat=flat)
+					
+					if(created):
+						return JsonResponse({
+							'applied': True, 
+						})
+					else:
+						return JsonResponse({
+							'previouslyApplied': True, 
+						}) 
+				except ObjectDoesNotExist:
+					return JsonResponse({
+						'applied': False, 
+					})

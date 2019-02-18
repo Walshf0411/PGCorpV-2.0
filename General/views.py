@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from Flats.views import FlatsListView
 # Create your views here.
 
+
 class LandingPage(TemplateView):
 	template_name = 'General/landing_page.html'
 

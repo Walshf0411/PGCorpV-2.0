@@ -13,7 +13,7 @@ class FlatDetails(models.Model):
 	title = models.CharField(max_length=30)
 	address = models.CharField(max_length=150)
 	description = models.CharField(max_length=200)
-	total_space = models.CharField(max_length=10)
+	total_space = models.IntegerField(validators=(MinValueValidator(limit_value=50), ))
 	total_rent = models.IntegerField(validators=(MinValueValidator(limit_value=200), ))
 	deposit = models.CharField(max_length=10)
 	possession = models.CharField(max_length=20)
@@ -44,3 +44,8 @@ class FavouriteFlats(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	flat = models.ForeignKey(FlatDetails, on_delete=models.CASCADE)
 
+
+class FlatApplication(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	flat = models.ForeignKey(FlatDetails, on_delete=models.CASCADE)
+	allowed_user = models.BooleanField(default=False)

@@ -65,6 +65,35 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="applyModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					Confirm, Application?
+				</div>
+				<div class="modal-body">
+					<h3>Kindly note the following points:</h3>
+					<ul>
+						<li>
+							<b>&#8377;{% widthratio object.total_rent object.number_of_guests 1 %}</b> is the amount you pay as rent.
+						</li>
+						<li>
+							<b>&#8377;{% widthratio object.deposit object.number_of_guests 1 %}</b> is the amount you will have to pay as deposit.
+						</li>
+						<li>
+							You will be accompained with <b>{{ object.number_of_guests|add:"-1" }}</b> more guests.
+						</li>
+					</ul>
+					<div class="alert alert-dissmissible" id="apply-status-message-div" 
+					style="display:none"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" id="submit-application-button">Submit</button> 
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="container" id="main-container">
 		<div class="row">
@@ -151,10 +180,10 @@
 		</div>
 
 		<div class="container" align=center id="user-actions-div">
-			{% if user != object.user %}
+			{% if user != object.user and user.pgcorp_user.user_type != 1 %}
 			
 				{% if user.is_authenticated %}
-					<button class="btn btn-lg btn-info">
+					<button class="btn btn-lg btn-info" data-toggle="modal" data-target="#applyModal">
 						Apply for reservation
 					</button>
 				{% else %}
@@ -211,6 +240,30 @@
 					}
 				}
 			})
+		});
+		$("#submit-application-button").click(function() {
+			$.ajax({
+				url: '{% url "apply" %}', 
+				method: "get",
+				data: {
+					'flat': "{{ object.hash }}", 
+				}, 
+				dataType: 'json', 
+				success: function(data) {
+					if(data.applied){
+						console.log(data.applied);
+						$("#apply-status-message-div").text("Successfully applied for the flat.");
+						$("#apply-status-message-div").css("display", "block");
+						$("#apply-status-message-div").removeClass("alert-danger");
+						$("#apply-status-message-div").addClass("alert-success");
+					} else if (data.previouslyApplied) {
+						$("#apply-status-message-div").text("You have already applied for the flat.");
+						$("#apply-status-message-div").css("display", "block");
+						$("#apply-status-message-div").addClass("alert-danger");
+						$("#apply-status-message-div").removeClass("alert-success");
+					}
+				}
+			});
 		});
 	})
 </script>

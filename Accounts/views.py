@@ -25,6 +25,7 @@ class UserSignupView(CreateView):
 	success_url = '/'
 
 	def form_valid(self, form):
+		self.request.session['user_created'] = True
 		return super().form_valid(form)
 
 

@@ -34,9 +34,11 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'all_flats' %}">Rent a flat</a>
 			</li>
+			{% if user.pgcorp_user.user_type == 1 %}
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'post' %}">Post a flat</a>
 			</li>
+			{% endif %}
 		</ul>
 		<!--Items to the right of the navbar-->
 		<ul class="navbar-nav ml-auto">
