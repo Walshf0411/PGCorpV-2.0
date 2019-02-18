@@ -55,7 +55,7 @@ class FlatsListView(ListView):
 	model = FlatDetails
 	template_name = "Flats/flats_list.html"
 	context_object_name = "flats"
-	queryset = FlatDetails.objects.order_by("datetime")
+	queryset = FlatDetails.objects.order_by("date_of_posting")
 
 
 class ContactOwnerView(View):
@@ -102,3 +102,4 @@ class LikeFlat(View):
 					'liked': False,
 					'count': count,
 				})
+

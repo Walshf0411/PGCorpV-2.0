@@ -24,7 +24,7 @@ class FlatDetails(models.Model):
 	number_of_guests = models.IntegerField(validators=(MinValueValidator(limit_value=1), ))
 	hash = models.CharField(max_length=6)
 	slug = models.SlugField(null=True)
-	datetime = models.DateTimeField(auto_now=True, editable=True)
+	date_of_posting = models.DateTimeField(auto_now=True)
 
 	def save(self, *args, **kwargs):
 		hash = getHash(6)
@@ -43,3 +43,4 @@ class FlatDetails(models.Model):
 class FavouriteFlats(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	flat = models.ForeignKey(FlatDetails, on_delete=models.CASCADE)
+
