@@ -6,14 +6,28 @@ Something fascinating is coming.<br>
 # The Following instructions will get the website running on your local machine
 
 1. Install python on your machine from the website https://www.python.org/downloads/
-2. Use Pip(Python's package manager) to install django.
+2. Use Pip(python's package manager) to install virtualenv.
 3. Open the command prompt and type in the following command
 ```
-pip install django==1.11.1
+pip install virtualenv
 ```
-4. Once django is intalled, get to this repository and use the clone option to download a zip file of the code to get the repository on your local machine.
-5. Extract the zip file and enter the directory using the command prompt and then type in the following command
+4. Once virtualenv is installed, navigate to you preferred directory using command prompt and type the following command to create a new virual environment
+```
+virtualenv env
+```
+5. Once the virtual environment is installed, type the following command.
+```
+env\Scripts\activate
+```
+A virtual environment will be activated.
+6. Now download the zip, extract it, navigate to it using the command prompt and run.
+```
+pip install -r requirements.txt
+```
+This will install all the required packages.
+7. Now type the following command.
 ```
 python manage.py runserver
 ```
-6. Now open your browser and type in http://127.0.0.1 to see the website 
+A development server will start.
+8. To view the website, go to http://127.0.0.1:8000 using your choice of browser.
