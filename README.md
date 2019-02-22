@@ -19,15 +19,15 @@ virtualenv env
 ```
 env\Scripts\activate
 ```
-A virtual environment will be activated.
+A virtual environment will be activated.<br>
 6. Now download the zip, extract it, navigate to it using the command prompt and run.
 ```
 pip install -r requirements.txt
 ```
-This will install all the required packages.
+This will install all the required packages.<br>
 7. Now type the following command.
 ```
 python manage.py runserver
 ```
-A development server will start.
+A development server will start.<br>
 8. To view the website, go to http://127.0.0.1:8000 using your choice of browser.
