@@ -130,3 +130,6 @@ lOGIN_URL = reverse_lazy('login')
 LOGOUT_REDIRECT_URL = reverse_lazy('land_page')
 LOGIN_REDIRECT_URL = reverse_lazy('land_page')
 # if not specifed, redirects to /accounts/profile/
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

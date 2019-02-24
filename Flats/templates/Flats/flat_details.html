@@ -171,7 +171,15 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="container" align=center>
+					{% for image in images %} 
+						<img src="{{ image }}" alt="">
+					{% endfor %}
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="offset-8 col-sm-4">
 				Posted by: <b><i>{{ object.user }}</i></b><br>

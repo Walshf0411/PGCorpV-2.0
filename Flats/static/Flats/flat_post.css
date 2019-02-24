@@ -22,3 +22,24 @@ label{
 #no-label{
     font-weight: unset;
 }
+.image-upload-zone{
+    height: 150px;
+    line-height: 150px;
+    border: 2px dashed #ccc;
+    color: #ccc;
+    text-align: center;
+}
+.dragzone-drag-over{
+    border: 2px dashed #000;
+    color: #000;
+}
+#files-list {
+    display: none;
+}
+#files-list:nth-child(odd){
+    padding: 5px;
+    background-color: #dee2e6;
+}
+.hidden-input{
+    display: none;
+}

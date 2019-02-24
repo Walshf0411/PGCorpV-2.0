@@ -27,11 +27,6 @@ class FlatDetails(models.Model):
 	date_of_posting = models.DateTimeField(auto_now=True)
 
 	def save(self, *args, **kwargs):
-		hash = getHash(6)
-		while any(hash == x.hash for x in FlatDetails.objects.all()):
-			hash = getHash(6)
-
-		self.hash = hash
 		self.slug = slugify(self.title)
 		super().save(args, kwargs)
 

@@ -13,7 +13,7 @@
 		Enter the details for the flat you wish to post to <strong>Paying Guests</strong>. Enter accurate details to attract Paying guests to view your flat.
 	</p>	
 	<div class="container" id="form-container">
-		<form action="{% url 'post' %}" method="POST">
+		<form action="{% url 'post' %}" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			{% load crispy_forms_tags %}
 			<div class="form-main-container">
@@ -50,13 +50,57 @@
 				</div>
 
 				<div class="row">
-				<div class="col-sm-6">
-					{{ form.parking_options|as_crispy_field }}
+					<div class="col-sm-6">
+						{{ form.parking_options|as_crispy_field }}
+					</div>
 				</div>
-				</div>
-			</div>
+				{{ form.images|as_crispy_field}}
+				
 			<button type="submit" class="btn btn-info btn-lg">Submit</button>
 		</form>		
 	</div>
 </div>
+{% endblock %}
+{% block javascript %}
+<script>
+	$(document).ready(function() {
+
+		function checkIfExists(array, element) {
+			for (i=0; i < array.length; i++ ) {
+				if (array[i] == element) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		var dropzone = document.getElementById("image-upload-zone");
+		var filesToBeUploaded = Array();
+		dropzone.ondrop = function(e) {
+			e.preventDefault();
+			$('#files-list').css("display", "block");
+			this.className = "image-upload-zone";
+			var filesDiv = $('#files-list');
+			var files = e.dataTransfer.files;
+			for (i=0; i < files.length; i++){
+				if (checkIfExists(filesToBeUploaded, files[i])) {
+					continue;
+				}
+				filesToBeUploaded.push(files[i]);
+				filesDiv.append('<div class="file">' + files[i].name + "</div>");
+			}
+			document.getElementById("id_images").files = filesToBeUploaded;
+		};
+		console.log(dropzone.ondrop);
+		dropzone.ondragover = function() {
+			this.className = "image-upload-zone dragzone-drag-over"
+			return false;
+		};
+
+		dropzone.ondragleave = function() {
+			this.className = "image-upload-zone";
+			return false;
+		};
+	});
+</script>
 {% endblock %}

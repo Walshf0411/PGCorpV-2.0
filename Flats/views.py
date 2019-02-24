@@ -8,6 +8,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from Accounts.forms import UserLoginForm, UserSignupForm
+from General.general import getHash
+from PGCorpV2 import settings
+import os
 
 
 # Create your views here.
@@ -20,6 +23,21 @@ class FlatPostView(CreateView):
 	def form_valid(self, form):
 		form.instance.user = self.request.user
 		self.request.session['flat_posted'] = True
+		hash = getHash(6)
+		while any(hash == x.hash for x in FlatDetails.objects.all()):
+			hash = getHash(6)
+		
+		form.instance.hash = hash
+		
+		images_dir = os.path.join(settings.MEDIA_ROOT, hash)		
+		os.mkdir(images_dir)
+		file_prefix = os.path.join(images_dir, "image_")
+
+		for index, image in enumerate(self.request.FILES.getlist("images")):
+			with open(file_prefix + str(index) + ".jpg", "wb+") as destination:
+				for chunk in image.chunks():
+					destination.write(chunk)
+
 		return super().form_valid(form)
 
 
@@ -30,6 +48,18 @@ class FlatDetailsView(DetailView):
 
 	def get_context_data(self, *args, **kwargs):
 		context = super().get_context_data()
+		
+		flat = context['object']
+		files_dir = os.path.join(settings.MEDIA_ROOT, flat.hash)
+		files_list = []
+		for root, _, files in os.walk(files_dir):
+			for file in files:
+				files_list.append(os.path.join(root, file))
+
+		context.update({
+			'images': files_list,
+		})
+
 		if not self.request.user.is_authenticated:
 			context.update({
 				"login_form": UserLoginForm(), 

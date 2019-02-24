@@ -81,6 +81,14 @@ class FlatPostForm(forms.ModelForm):
         choices=POSESSION_CHOICES
     )
     number_of_guests = forms.IntegerField(help_text="All the guest living in the house will pay equal rent, that will be deduced by dividing the total rent by the number of guests.")
+    images = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                "multiple": True,
+            }
+        )
+    )
+    
     class Meta:
-        fields = ['title', 'address', 'description', 'total_space', 'total_rent', 'deposit', 'possession', 'total_rooms', 'property_type', 'floor', 'parking_options', 'number_of_guests']
+        fields = ['title', 'address', 'description', 'total_space', 'total_rent', 'deposit', 'possession', 'total_rooms', 'property_type', 'floor', 'parking_options', 'number_of_guests', 'images']
         model = FlatDetails
