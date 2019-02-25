@@ -45,7 +45,7 @@ class UserLogoutView(LogoutView):
 
 
 class UserProfileView(TemplateView):
-	template_name = 'Accounts/user_profile.html'
+	template_name = 'Accounts/dashboard_base.html'
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data()
