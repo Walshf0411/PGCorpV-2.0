@@ -111,3 +111,12 @@ body {
   background: #fff;
   min-height: 460px;
 }
+
+.flat-container{
+	box-shadow: 0px 0px 15px #e5dce0;
+	margin-top: 15px;
+	padding: 5px;
+}
+.flat-container:hover{
+	box-shadow: 0px 0px 15px #bfbbbd;
+}

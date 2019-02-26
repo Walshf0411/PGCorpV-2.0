@@ -8,8 +8,9 @@ from .forms import UserSignupForm, UserLoginForm
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
-from Flats.models import FlatDetails
-
+from Flats.models import FlatDetails, FlatApplication
+from Accounts import models
+from django.core.paginator import Paginator
 # Create your views here.
 # A view is a basically the main processing unit of an app
 # every view is mapped to a url 
@@ -49,14 +50,32 @@ class UserProfileView(TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data()
-		# current user
-		user = self.request.user
-		flats_posted = FlatDetails.objects.filter(user=user)
-		flats_posted = map(lambda x: x.flatdetails_set.all(), flats_posted)
-		flats_posted = map(lambda x: x[0], flats_posted) 
-		context.update({
-			'flats_posted': list(flats_posted),
-		})
+		if self.request.user.is_authenticated:
+			if self.request.user.pgcorp_user.user_type == models.HOUSE_OWNER:
+				flats_posted = FlatDetails.objects.filter(user=self.request.user).order_by("-date_of_posting")
+				paginator = Paginator(flats_posted, 7)
+				flats_posted = paginator.page(1)
+
+				if 'page' in self.request.GET: 
+					flats_posted = paginator.page(self.request.GET['page'])
+
+				context.update({
+					"user_type": "House Owner",
+					"flats": flats_posted,
+				})
+			elif self.request.user.pgcorp_user.user_type == models.PAYING_GUEST:
+				flats_applied = FlatApplication.objects.filter(user=self.request.user)
+				paginator = Paginator(flats_posted, 7)
+				flats_applied =  paginator.page(1)
+
+				if 'page' in self.request.GET:
+					flats_applied = paginator.page(self.request.GET['page'])
+
+				context.update({
+					"user_type": "Paying Guest", 
+					"flats": flats_applied, 
+				})
+		
 		return context
 
 

@@ -19,10 +19,13 @@
 				
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
-						Walsh fernandes
+						{{user.first_name|title}} {{user.last_name|title}}
 					</div>
 					<div class="profile-usertitle-job">
-						 Software Developer
+						 {{user_type}}
+					</div>
+					<div align=center>
+						<i>@{{user.username}}</i>
 					</div>
 				</div>
 				
@@ -67,7 +70,66 @@
 		</div>
 		<div class="col-md-9">
             <div class="profile-content">
-			  lorem ipsum
+				{% if request.user.pgcorp_user.user_type == 1 %}
+					<h1>Posted Flats</h1>
+					<div class="pagination">
+						<span class="step-links">
+							{% if flats.has_previous %}
+								<a href="?page=1">&laquo; first</a>
+								<a href="?page={{ flats.previous_page_number }}">previous</a>
+							{% endif %}
+					
+							<span class="current">
+								Page {{ flats.number }} of {{ flats.paginator.num_pages }}.
+							</span>
+					
+							{% if flats.has_next %}
+								<a href="?page={{ flats.next_page_number }}">next</a>
+								<a href="?page={{ flats.paginator.num_pages }}">last &raquo;</a>
+							{% endif %}
+						</span>
+					</div>
+					{% for flat in flats %}
+						<div class="flat-container">
+							<h3>{{flat.title|title}}</h3>
+							<strong>Number of Applications: </strong>{{flat.flatapplication_set.count}}
+							<div align=center>
+								<a class="btn btn-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View on site</a>
+							</div>
+						</div>
+						
+					{% empty %}
+						no flats posted
+					{% endfor %}
+
+				{% elif request.user.pgcorp_user.user_type == 2 %}
+					<h1>Applied Flats</h1>
+					<div class="pagination">
+						<span class="step-links">
+							{% if flats.has_previous %}
+								<a href="?page=1">&laquo; first</a>
+								<a href="?page={{ flats.previous_page_number }}">previous</a>
+							{% endif %}
+					
+							<span class="current">
+								Page {{ flats.number }} of {{ flats.paginator.num_pages }}.
+							</span>
+					
+							{% if flats.has_next %}
+								<a href="?page={{ flats.next_page_number }}">next</a>
+								<a href="?page={{ flats.paginator.num_pages }}">last &raquo;</a>
+							{% endif %}
+						</span>
+					</div>
+					{% for flat in flats %}
+						<div class="flat-container">
+							<strong>{{flat.title|title}}</strong><br>
+							<strong>Number of Applications: </strong>{{flat.flatapplication_set.count}}
+						</div>
+					{% empty %}
+						no flats Applied
+					{% endfor %}
+				{% endif %}
             </div>
 		</div>
 	</div>
