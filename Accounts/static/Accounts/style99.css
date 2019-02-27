@@ -120,3 +120,6 @@ body {
 .flat-container:hover{
 	box-shadow: 0px 0px 15px #bfbbbd;
 }
+#profile_pic_upload_wrapper{
+	display: none;
+}

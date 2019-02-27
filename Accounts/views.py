@@ -5,12 +5,15 @@ from django.contrib.auth.views import (
 	PasswordChangeView, 
 	PasswordChangeDoneView)
 from .forms import UserSignupForm, UserLoginForm
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, FormView, UpdateView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from Flats.models import FlatDetails, FlatApplication
 from Accounts import models
 from django.core.paginator import Paginator
+from django.views.generic import View
+from django.http import JsonResponse
+from .models import Pgcorp_user
 # Create your views here.
 # A view is a basically the main processing unit of an app
 # every view is mapped to a url 
@@ -90,3 +93,14 @@ class UserPasswordChangeDoneView(PasswordChangeDoneView):
 
 class UpdateProfileView(TemplateView):
 	template_name = 'Accounts/update_profile.html'
+
+
+class UpdateProfilePicture(View):
+	
+	def post(self, request, *args, **kwargs):
+		if self.request.user.is_authenticated:
+			if 'profile_picture' in self.request.POST:
+				self.request.user.pgcorp_user.profile_picture = self.request.POST['profile_picture']
+				return JsonResponse({
+					"success": "profile picture updated"
+				})

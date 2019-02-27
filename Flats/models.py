@@ -5,9 +5,9 @@ from django.utils.text import slugify
 from django.core.validators import MinValueValidator
 # Create your models here.
 
-
 class FlatDetails(models.Model):
 	'''This is a seperate table as the details can be comfortably increased in future'''
+
 	# The id of the flat for which we have to store the details
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	title = models.CharField(max_length=30)

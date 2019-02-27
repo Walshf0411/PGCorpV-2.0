@@ -13,10 +13,20 @@
 		<div class="col-md-3">
 			<div class="profile-sidebar">
 				
+				{% if not user.profile_picture.url %}
 				<div class="profile-userpic">
-					<img src="https://static.change.org/profile-img/default-user-profile.svg" class="img-responsive" alt="">
+					<img title="Click to upload profile pic" src="https://static.change.org/profile-img/default-user-profile.svg" id="profile_picture_dummy" class="img-responsive" alt="{{user.username}}'s profile picture">
 				</div>
+				{% else %}
+				<div class="profile-userpic">
+					<img title="Click to upload profile pic" src="{{ user.profile_picture.url }}" class="img-responsive" alt="{{user.username}}'s profile picture">
+				</div>
+				{% endif %}
 				
+				<div id="profile_pic_upload_wrapper">
+					<input type="file" accept="image/*" capture name="profile_picture" id="profile_pic_upload">
+				</div>
+
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
 						{{user.first_name|title}} {{user.last_name|title}}
@@ -139,4 +149,32 @@
 <br>
 </body>
 </html>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+		$(document).ready(function() {
+			$("#profile_picture_dummy").click(function(){
+				$("#profile_pic_upload").click();
+			});
+			$("#profile_pic_upload").on("change", function(){
+				formData = new FormData();
+				formData.append("csrfmiddlewaretoken", "{{csrf_token}}");
+				formData.append("profile_picture", this.files[0]);
+				$.ajax({
+					method: "post", 
+					url: "{% url 'update_profile_picture'%}", 
+					data: {
+						'csrfmiddlewaretoken': "{{ csrf_token }}", 
+						"profile_picture": this.files[0],
+					}, 
+					success: function(data) {
+						if(data.success){
+							alert("profile picture updated.");
+						}
+					}
+				});
+			});
+		});
+	</script>
 {% endblock %}

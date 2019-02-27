@@ -9,4 +9,5 @@ urlpatterns = [
 	url(r'password_change/$', views.UserPasswordChangeView.as_view(), name='password_change'), 
 	url(r'password_change/done/$', views.UserPasswordChangeDoneView.as_view(), name='password_change_done'),
 	url(r'update/', views.UpdateProfileView.as_view(), name='update'),
+	url(r'update_profile_picture/$', views.UpdateProfilePicture.as_view(), name='update_profile_picture')
 ]
