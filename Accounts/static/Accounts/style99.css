@@ -123,3 +123,6 @@ body {
 #profile_pic_upload_wrapper{
 	display: none;
 }
+#registrationForm{
+  width:400%;
+}
