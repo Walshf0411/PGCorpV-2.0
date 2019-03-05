@@ -68,7 +68,7 @@ class UserProfileView(TemplateView):
 				})
 			elif self.request.user.pgcorp_user.user_type == models.PAYING_GUEST:
 				flats_applied = FlatApplication.objects.filter(user=self.request.user)
-				paginator = Paginator(flats_posted, 7)
+				paginator = Paginator(flats_applied, 7)
 				flats_applied =  paginator.page(1)
 
 				if 'page' in self.request.GET:

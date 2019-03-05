@@ -127,8 +127,8 @@ TIME_ZONE = 'Asia/Kolkata'
 
 STATIC_URL = '/static/'
 lOGIN_URL = reverse_lazy('login')
-LOGOUT_REDIRECT_URL = reverse_lazy('land_page')
-LOGIN_REDIRECT_URL = reverse_lazy('land_page')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
+# LOGIN_REDIRECT_URL = reverse_lazy('')
 # if not specifed, redirects to /accounts/profile/
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

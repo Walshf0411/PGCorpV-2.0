@@ -5,10 +5,10 @@
 	<form class="main-form" method="POST">{% csrf_token %}
 		<div class="container">
 			{% load crispy_forms_tags %}
-				{% for field in form %} 
-					{{field|as_crispy_field}}
-				{% endfor %}
-			<input type="submit" value="Proceed" class="btn btn-primary" id="submit">
+			{{ form|crispy }}
+			<div align=center>
+				<input type="submit" value="Proceed" class="btn btn-primary" id="submit">
+			</div>
 		</div>
 	</form>
 </div>

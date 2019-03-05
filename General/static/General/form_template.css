@@ -17,40 +17,9 @@
     width:100%;
     margin:auto;
 }
-.form-username label{
-    display: block;
-    text-transform: uppercase;
-    text-align: left;
+label{
+    font-size: 17px;
     font-weight: bold;
-}
-
-.form-username input{
-    width:100%;
-    border: none;
-    background-color: #f4f4f4;
-    border-bottom:1px solid black;
-    margin-bottom:15%;
-    outline: none;
-}
-.form-username input:focus{
-    border-bottom: 1px solid blue;
-}
-.form-password label{
-    display: block;
-    text-transform: uppercase;
-    text-align: left;
-    font-weight: bold;
-}
-.form-password input{
-    width:100%;
-    border: none;
-    background-color: #f4f4f4;
-    border-bottom:1px solid black;
-    margin-bottom:15%;
-    outline: none;
-}
-.form-password input:focus{
-    border-bottom: 1px solid blue;
 }
 #submit{
     width:50%;
