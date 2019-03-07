@@ -44,3 +44,7 @@ class FlatApplication(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	flat = models.ForeignKey(FlatDetails, on_delete=models.CASCADE)
 	allowed_user = models.BooleanField(default=False)
+
+class FlatImage(models.Model):
+	flat = models.ForeignKey(FlatDetails, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to="flat_images/")

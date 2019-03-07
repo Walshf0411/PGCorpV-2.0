@@ -7,5 +7,9 @@
 # .git 
 .git/
 
-# ignore vscode folder
+# ignore vscode folder and jetbrains pycharm
 .vscode/
+.idea/
+
+# ignore media files
+media/

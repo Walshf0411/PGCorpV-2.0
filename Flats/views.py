@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic import DetailView, ListView, View
-from .models import FlatDetails, FavouriteFlats, FlatApplication
+from .models import FlatDetails, FavouriteFlats, FlatApplication, FlatImage
 from django.urls import reverse_lazy
 from . import forms
 from django.core.exceptions import ObjectDoesNotExist
@@ -28,17 +28,14 @@ class FlatPostView(CreateView):
 			hash = getHash(6)
 		
 		form.instance.hash = hash
-		
-		images_dir = os.path.join(settings.MEDIA_ROOT, hash)		
-		os.mkdir(images_dir)
-		file_prefix = os.path.join(images_dir, "image_")
 
-		for index, image in enumerate(self.request.FILES.getlist("images")):
-			with open(file_prefix + str(index) + ".jpg", "wb+") as destination:
-				for chunk in image.chunks():
-					destination.write(chunk)
+		super().form_valid(form)
 
-		return super().form_valid(form)
+		for image in self.request.FILES.getlist('images'):
+			image_obj = FlatImage(flat=form.instance, image=image)
+			image_obj.save()
+
+		return redirect(self.success_url)
 
 
 class FlatDetailsView(DetailView):

@@ -144,3 +144,26 @@ li{
 		margin-top: 5px;
 	}
 }
+body, html {
+	/* Never get smaller than this */
+	font-size: 14px;
+  }
+  
+  @media (min-width:600px) {
+	body, html {
+	  font-size: 16px;
+	}
+  }
+  
+  @media (min-width:800px) {
+	body, html {
+	  font-size: 18px;
+	}
+  }
+  
+  @media (min-width:1000px) {
+	body, html {
+	  /* Never get larger than this */
+	  font-size: 20px;
+	}
+  }
