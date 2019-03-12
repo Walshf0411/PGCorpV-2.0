@@ -102,19 +102,53 @@
 					{% load custom_tags %}
 					
 					{% for flat in flats %}
+						{% if forloop.counter0|mod:3 == 0 %}
+						<div class="row">
+						{% endif %}
+						
+						<div class="col-sm-4 flat-container">
+							<div id="{{flat.id}}" class="carousel slide" data-ride="carousel">
+									
+								<!-- Indicators -->
+								<ul class="carousel-indicators">
+									{% for i in flat.flatimages_set.all %}
+										{% if forloop.counter0 == 0 %}
+											<li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+										{% else %}
+											<li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" ></li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+								
+								<!-- The slideshow -->
+								<!-- please insert appropriate images !!! -->
+								<div class="carousel-inner">
+									{% for image_obj in flat.flatimage_set.all %}
+										{% if forloop.counter0 == 0 %}
+											<div class="carousel-item active">
+												<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
+											</div>
+										{% else %}
+										<div class="carousel-item">
+											<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
+										</div>
+										{% endif %}
+									{% endfor %}
+								</div>
+								
+								<!-- Left and right controls -->
+								<a class="carousel-control-prev" href="#{{flat.id}}" data-slide="prev">
+									<span class="carousel-control-prev-icon"></span>
+								</a>
+								<a class="carousel-control-next" href="#{{flat.id}}" data-slide="next">
+									<span class="carousel-control-next-icon"></span>
+								</a>
+							</div>
+						</div>
 					
-					{% if forloop.counter0|mod:3 == 0 %}
-					<div class="row">
-					{% endif %}
-					
-					<div class="col-sm-3">
-						{{flat.title}}
-					</div>
-					
-					{% if forloop.counter0|mod:3 == 2 or forloop.counter0 == flats|length|subtract:1 %}
-					</div>
-					{% endif %}
-					
+						{% if forloop.counter0|mod:3 == 2 or forloop.counter0 == flats|length|subtract:1 %}
+						</div>
+						{% endif %}
 					{% empty %}
 					<h1>No flats posted</h1>
 					{% endfor %}
