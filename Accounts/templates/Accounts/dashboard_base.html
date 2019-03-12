@@ -98,18 +98,27 @@
 							
 						</span>
 					</div>
-
+					
+					{% load custom_tags %}
+					
 					{% for flat in flats %}
-					<div class="flat-container">
-						<h3>{{flat.title|title}}</h3>
-						<strong>Number of Applications: </strong>{{flat.flatapplication_set.count}}
-						<div align="center">
-							<a class="btn btn-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View on site</a>
-						</div>
-					</div>		
+					
+					{% if forloop.counter0|mod:3 == 0 %}
+					<div class="row">
+					{% endif %}
+					
+					<div class="col-sm-3">
+						{{flat.title}}
+					</div>
+					
+					{% if forloop.counter0|mod:3 == 2 or forloop.counter0 == flats|length|subtract:1 %}
+					</div>
+					{% endif %}
+					
 					{% empty %}
 					<h1>No flats posted</h1>
 					{% endfor %}
+
 				</div>
 				
 				<!-- for paying guests. -->
