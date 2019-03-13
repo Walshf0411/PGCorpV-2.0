@@ -72,7 +72,7 @@
 			</div>
 		</div>
 		
-		<div class="tab-content">
+		<div class="tab-content col-md-9">
 			<div class="tab-pane active" id="flats">
 				
 				<!-- for flat owneres -->	
@@ -103,46 +103,64 @@
 					
 					{% for flat in flats %}
 						{% if forloop.counter0|mod:3 == 0 %}
-						<div class="row">
+						<div class="row" style="margin-top: 6px;">
 						{% endif %}
 						
-						<div class="col-sm-4 flat-container">
-							<div id="{{flat.id}}" class="carousel slide" data-ride="carousel">
+						<div class="col-sm-4">
+							<div class="flat-container">
+								<div id="{{flat.id}}" class="carousel slide" data-ride="carousel">
+										
+									<!-- Indicators -->
+									<ul class="carousel-indicators">
+										{% for i in flat.flatimages_set.all %}
+											{% if forloop.counter0 == 0 %}
+												<li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+											{% else %}
+												<li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" ></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
 									
-								<!-- Indicators -->
-								<ul class="carousel-indicators">
-									{% for i in flat.flatimages_set.all %}
-										{% if forloop.counter0 == 0 %}
-											<li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
-										{% else %}
-											<li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" ></li>
-										{% endif %}
-									{% endfor %}
-								</ul>
-								
-								<!-- The slideshow -->
-								<!-- please insert appropriate images !!! -->
-								<div class="carousel-inner">
-									{% for image_obj in flat.flatimage_set.all %}
-										{% if forloop.counter0 == 0 %}
-											<div class="carousel-item active">
+									<!-- The slideshow -->
+									<!-- please insert appropriate images !!! -->
+									<div class="carousel-inner">
+										{% for image_obj in flat.flatimage_set.all %}
+											{% if forloop.counter0 == 0 %}
+												<div class="carousel-item active">
+													<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
+												</div>
+											{% else %}
+											<div class="carousel-item">
 												<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
 											</div>
-										{% else %}
-										<div class="carousel-item">
-											<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
-										</div>
-										{% endif %}
-									{% endfor %}
+											{% endif %}
+										{% endfor %}
+										<div class="overlay"></div>
+										<div class="title">{{flat.title|title}}</div>
+									</div>
+									
+									<!-- Left and right controls -->
+									<a class="carousel-control-prev" href="#{{flat.id}}" data-slide="prev">
+										<span class="carousel-control-prev-icon"></span>
+									</a>
+									<a class="carousel-control-next" href="#{{flat.id}}" data-slide="next">
+										<span class="carousel-control-next-icon"></span>
+									</a>
 								</div>
-								
-								<!-- Left and right controls -->
-								<a class="carousel-control-prev" href="#{{flat.id}}" data-slide="prev">
-									<span class="carousel-control-prev-icon"></span>
-								</a>
-								<a class="carousel-control-next" href="#{{flat.id}}" data-slide="next">
-									<span class="carousel-control-next-icon"></span>
-								</a>
+
+								<div style="margin:2px;"> 
+									<p>
+										{{flat.address}}
+									</p>
+									<br>
+									<strong>Number of applications: </strong>{{flat.flatapplication_set.count}}
+									
+									<div class="container" align=center style="padding-bottom: 3px;">
+										<a class="btn btn-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View on Site</a>
+										<a href="" class="btn btn-success" href="#">View all applications</a>
+									</div>
+
+								</div>
 							</div>
 						</div>
 					
