@@ -7,6 +7,8 @@ from django.views.generic import ListView
 from Flats.views import FlatsListView
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 # Create your views here.
 
 
@@ -76,11 +78,22 @@ class Search(FlatsListView):
 
 class TestMail(View):
 	def get(self, request, *args, **kwargs):
+
+		subject = 'Subject'
+		html_message = render_to_string(
+			'General/mail_templates/registrationSuccess.html', 
+			context={
+				'user': "walsh",
+			}
+		)
+		plain_message = strip_tags(html_message)
+		
 		send_mail(
 			'Test Mail', 
-			'This is a test mail', 
+			plain_message, 
 			'pgcorpservice@gmail.com',
 			['walshfernades.320@gmail.com', '2016.rahul.nandrajog@ves.ac.in'], 
-			fail_silently=True
+			fail_silently=True, 
+			html_message=html_message,
 		)
 		return HttpResponse("Mail")

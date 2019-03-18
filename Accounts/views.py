@@ -14,7 +14,10 @@ from django.core.paginator import Paginator
 from django.views.generic import View
 from django.http import JsonResponse
 from .models import Pgcorp_user
-from django.template import Context, Template
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from django.utils.html import strip_tags
+from Accounts.models import User_Type
 # Create your views here.
 # A view is a basically the main processing unit of an app
 # every view is mapped to a url 
@@ -30,7 +33,29 @@ class UserSignupView(CreateView):
 	success_url = '/'
 
 	def form_valid(self, form):
+		subject = 'Registration Succesful.'
+		username = form.cleaned_data['username']
+		user_type = User_Type()
+		html_message = render_to_string(
+			'General/mail_templates/registrationSuccess.html', 
+			context={
+				'username': username,
+				'email': form.cleaned_data['email'], 
+				'user_type': user_type.user_type_string(form.cleaned_data['user_type']), 
+				'first_name': form.cleaned_data['first_name'], 
+				'last_name': form.cleaned_data['last_name'], 
+			}
+		)
+		plain_message = strip_tags(html_message)
 		
+		send_mail(
+			subject, 
+			plain_message, 
+			"pgcorpservice@gmail.com", 
+			[form.cleaned_data['email'], ], 
+			html_message=html_message, 
+			fail_silently=False
+		) 
 		return super().form_valid(form)
 
 

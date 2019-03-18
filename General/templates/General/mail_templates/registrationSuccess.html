@@ -1,4 +1,4 @@
-{% extends 'General/mail_template/base_template.html' %}
+{% extends 'General/mail_templates/base_template.html' %}
 
 {% block title %}News Letter{% endblock %}
 
@@ -21,32 +21,27 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 col-md-12">
-            <img src="" alt="this will be any dummy image">
+        <div class="col-sm-6 col-sm-offset-3 col-md-12">s
+            <img src="https://imgbum.jobscdn.com/portal/img/empresas/0/0/1/2/0/4/5/0/9/7/logoMainPic_12045097_bum_vdbb4d006.jpg" alt="this will be any dummy image">
         </div>
         <div class="title">
             REGISTRATION SUCCESSFUL
         </div>
         <div class="content">
             <pre>
-                Hey user !!! 
+                Hey {{ first_name|title }} {{ last_name|title }}, 
                 Welcome to our portal hope you feel comfortable and believe in the services provided by us.
                 Your Account handling details are :
             </pre>
             <ul class="details">
-                <li>Username: </li>
-                <li>Email: </li>
-                <li>User Type: </li>
-                <li>Password: </li><!-- display password in such a way that only 2 digits (random order ) are visible -->
+                <li>Username: {{username}}</li>
+                <li>Email: {{email}}</li>
+                <li>User Type: {{user_type}}</li>
             </ul> 
-        </div>
-        <div class="row">
-            <div class="notify">
-                <p>
-                    Do you wish to be notified if you want to know about the flats people are posting or are in interested in going subscribe to our letter and we will deliver exactly the same.
-                </p>
-                <button class="btn btn-danger">Subscribe</button>
-            </div>
+            <p>
+                Login with your account credentials to get the best out of PGCORP.
+            </p>
+            <a href="{{site}}{% url 'login'%}">Login</a>
         </div>
     </div>
 </div>
