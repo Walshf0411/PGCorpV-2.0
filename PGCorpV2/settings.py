@@ -133,3 +133,11 @@ LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Email settings
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "pgcorpservice@gmail.com"
+EMAIL_HOST_PASSWORD = "gitbtitw"

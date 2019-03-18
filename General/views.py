@@ -5,6 +5,8 @@ from django.http import JsonResponse
 from Flats.models import FlatDetails
 from django.views.generic import ListView
 from Flats.views import FlatsListView
+from django.http import HttpResponse
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -71,3 +73,14 @@ class Search(FlatsListView):
 	def get_queryset(self):
 		search = self.request.GET['search']
 		return FlatDetails.objects.filter(location__contains=search)
+
+class TestMail(View):
+	def get(self, request, *args, **kwargs):
+		send_mail(
+			'Test Mail', 
+			'This is a test mail', 
+			'pgcorpservice@gmail.com',
+			['walshfernades.320@gmail.com', '2016.rahul.nandrajog@ves.ac.in'], 
+			fail_silently=True
+		)
+		return HttpResponse("Mail")
