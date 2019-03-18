@@ -14,6 +14,7 @@ from django.core.paginator import Paginator
 from django.views.generic import View
 from django.http import JsonResponse
 from .models import Pgcorp_user
+from django.template import Context, Template
 # Create your views here.
 # A view is a basically the main processing unit of an app
 # every view is mapped to a url 
@@ -29,7 +30,7 @@ class UserSignupView(CreateView):
 	success_url = '/'
 
 	def form_valid(self, form):
-		self.request.session['user_created'] = True
+		
 		return super().form_valid(form)
 
 
@@ -38,7 +39,7 @@ class UserLoginView(LoginView):
 	form_class = UserLoginForm
 
 	def form_valid(self, form):
-		self.request.session['user_logged_in'] = True
+		
 		return super().form_valid(form)
 
 

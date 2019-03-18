@@ -9,5 +9,3 @@ urlpatterns = [
 	url(r'test_mail/$', views.TestMail.as_view(), name='test_mail')
 ]
 
-if settings.DEBUG:
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
