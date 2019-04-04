@@ -56,8 +56,8 @@
 					Welcome, {{user}}
 				</buttton>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-					<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+					<a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a>
+					<a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a>
 				</div>
 			</div>
 		{% endif %}
@@ -87,7 +87,7 @@
 							<a href="#" class="footer-link">Rent a flat</a>
 						</li>
 						<li class="footer-link-li">
-							<a href="#" class="footer-link" >Post a flat</a>
+							<a href="#" class="footer-link ">Post a flat</a>
 						</li>
 						<li class="footer-link-li">
 							<a href="#" class="footer-link" >Rent a flat</a>
