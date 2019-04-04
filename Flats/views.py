@@ -151,3 +151,12 @@ class FlatApplyView(View):
 					return JsonResponse({
 						'applied': False, 
 					})
+
+class FlatApplicationsList(ListView):
+	template_name = 'Flats/flat_application_list.html'
+	context_object_name = 'flat_applications'
+
+	def get_queryset(self):
+		hash = self.kwargs['hash']
+		flat = FlatDetails.objects.get(hash=hash)
+		return FlatApplication.objects.filter(flat=flat)

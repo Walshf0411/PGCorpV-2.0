@@ -1,0 +1,25 @@
+{% extends 'Accounts/base.html' %}
+
+{% block title %} Applications{% endblock %}
+
+{% block cssfiles %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'Flats/flat_application_list.css'%}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Applications for your flat</h1>
+        {% for application in flat_applications %}
+            <div class="container">
+                <label>User: </label>
+                <a href="#">{{application.user}}</a> <br>
+            </div>
+        {% empty %}
+        <div class="container" align=center>
+            <i class="fas fa-frown fa-10x"></i><br>Opps, no applications for your flats.<br>
+            Come back later for more.
+        </div>
+        {% endfor %}
+    </div>
+{% endblock%}
