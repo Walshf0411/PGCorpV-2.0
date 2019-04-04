@@ -19,6 +19,15 @@ body,html{
     background-blend-mode:screen;
     display: flex;
 }
+.overlay{
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
 @media (max-width:600px){
     .pimg1{
         background-size: 100% 100%;
@@ -109,6 +118,7 @@ body,html{
 
 .parallax-text-wrapper{
     position: absolute;
+    z-index: 2; 
     top: 12%;
     color: black;
     letter-spacing:2px;
@@ -144,11 +154,9 @@ body,html{
 }
 #parallax-title{
     font-size: 60px;
-    background: #e6e6e6;
 }
 #parallax-subtitle{
     font-size: 15px;
-    background: #e6e6e6;
 }
 /*
     Animations for title and subtitle

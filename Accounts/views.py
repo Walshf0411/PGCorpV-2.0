@@ -80,7 +80,7 @@ class UserProfileView(TemplateView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data()
 		if self.request.user.is_authenticated:
-			if self.request.user.pgcorp_user.user_type == models.HOUSE_OWNER:
+			if self.request.user.pgcorp_user.user_type == User_Type.HOUSE_OWNER:
 				flats_posted = FlatDetails.objects.filter(user=self.request.user).order_by("-date_of_posting")
 				paginator = Paginator(flats_posted, 7)
 				flats_posted = paginator.page(1)
@@ -92,7 +92,7 @@ class UserProfileView(TemplateView):
 					"user_type": "House Owner",
 					"flats": flats_posted,
 				})
-			elif self.request.user.pgcorp_user.user_type == models.PAYING_GUEST:
+			elif self.request.user.pgcorp_user.user_type == User_Type.PAYING_GUEST:
 				flats_applied = FlatApplication.objects.filter(user=self.request.user)
 				paginator = Paginator(flats_applied, 7)
 				flats_applied =  paginator.page(1)
