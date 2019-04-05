@@ -156,6 +156,15 @@ class FlatApplicationsList(ListView):
 	template_name = 'Flats/flat_application_list.html'
 	context_object_name = 'flat_applications'
 
+	def get_context_data(self, *args, **kwargs):
+		context = super().get_context_data()
+		hash = self.kwargs['hash']
+		flat = FlatDetails.objects.get(hash=hash)
+		context.update({
+			'flat': flat, 
+		})
+		return context
+
 	def get_queryset(self):
 		hash = self.kwargs['hash']
 		flat = FlatDetails.objects.get(hash=hash)

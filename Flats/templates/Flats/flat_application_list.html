@@ -9,12 +9,58 @@
 
 {% block content %}
     <div class="container">
-        <h1>Applications for your flat</h1>
-        {% for application in flat_applications %}
-            <div class="container">
-                <label>User: </label>
-                <a href="#">{{application.user}}</a> <br>
+        <h1>Applications for your flat: {{flat.title}}</h1>
+        
+        <a href="{% url 'flat_detail' flat.hash flat.slug %}" id="back-button" class="btn btn-outline-info">
+            <i class="fa fa-caret-left fa-2x"></i> View on Site
+        </a>
+        
+        <!-- Flat details go here.--->
+        <div class="carousel-container">
+            <div id="demo" class="carousel slide" data-ride="carousel">		
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    {% for i in flat.flatimages_set.all %}
+                        {% if forloop.counter0 == 0 %}
+                            <li data-target="#demo" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+                        {% else %}
+                            <li data-target="#demo" data-slide-to="{{ forloop.counter0 }}" ></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                
+                <!-- The slideshow -->
+                <!-- please insert appropriate images !!! -->
+                <div class="carousel-inner">
+                    {% for image_obj in flat.flatimage_set.all %}
+                        {% if forloop.counter0 == 0 %}
+                            <div class="carousel-item active">
+                                <img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
+                            </div>
+                        {% else %}
+                        <div class="carousel-item">
+                            <img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
             </div>
+        </div>
+
+        <!--Flat applications come here -->
+        {% for applicati     in flat_applications %}  
+        <div class="flat-application">
+            <label>User: </label>
+            <a href="#">{{application.user}}</a> <br>
+        </div>
         {% empty %}
         <div class="container" align=center>
             <i class="fas fa-frown fa-10x"></i><br>Opps, no applications for your flats.<br>
