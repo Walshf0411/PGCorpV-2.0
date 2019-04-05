@@ -1,5 +1,40 @@
-
 .fa{
     margin: 0;
     padding: 0;
+}
+
+/*applying margin to both flat-applications and carousel*/
+.row{
+    margin-top: 10px;
+}
+/*applying margin to both flat-applications and carousel*/
+
+.carousel img{
+    height: 250px;
+}
+.hidden-details{
+    display: none;
+}
+.flat-application{
+    transition: all 0.5s;
+    box-shadow: 0 0 3px 3px #cccccc;
+    padding: 5px;
+}
+
+/*
+    styles for small screens
+*/
+@media (max-width: 500px) {
+    #flat-applications{
+        margin-top:10px;
+    }
+}
+/**/
+@-webkit-keyframes slide-down {
+    0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+  100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-webkit-keyframes slide-up {
+    0% { opacity: 1; -webkit-transform: translateY(0); }   
+  100% { opacity: 0; -webkit-transform: translateY(-100%); }
 }
