@@ -85,6 +85,15 @@
 						</li>
 					</ul>
 					<h5>If you are not satisfied with the conditions, kindly fill in the following form: </h5>
+					
+					<label for="negotiation_price"><b>Negotiation Price: </b></label><br/>
+					<input type="number" name="negotiation_price" id="negotiation_price_input" class="form-control" placeholder="Enter the total rent that you wish to have">
+					<span id="negotiation_price_error" class="error text-danger"></span>
+					<br/>
+					<label for="negotiation_price"><b>Number of guests: </b></label><br/>
+					<input type="number" name="negotiation_number_of_guests" id="negotiation_number_of_guests_input" class="form-control" placeholder="Enter the number of guests you want in total">
+					<span id="negotiation_number_of_guests_error" class="error text-danger"></span>
+					<br/>
 					<div class="alert alert-dissmissible" id="apply-status-message-div" 
 					style="display:none"></div>
 				</div>
@@ -289,28 +298,56 @@
 			})
 		});
 		$("#submit-application-button").click(function() {
-			$.ajax({
-				url: '{% url "apply" %}', 
-				method: "get",
-				data: {
-					'flat': "{{ object.hash }}", 
-				}, 
-				dataType: 'json', 
-				success: function(data) {
-					if(data.applied){
-						console.log(data.applied);
-						$("#apply-status-message-div").text("Successfully applied for the flat.");
-						$("#apply-status-message-div").css("display", "block");
-						$("#apply-status-message-div").removeClass("alert-danger");
-						$("#apply-status-message-div").addClass("alert-success");
-					} else if (data.previouslyApplied) {
-						$("#apply-status-message-div").text("You have already applied for the flat.");
-						$("#apply-status-message-div").css("display", "block");
-						$("#apply-status-message-div").addClass("alert-danger");
-						$("#apply-status-message-div").removeClass("alert-success");
-					}
+			var negotiationPrice = $("#negotiation_price_input");
+			var negotiationNumberOfGuests = $("#negotiation_number_of_guests_input");
+			var negotiationPriceError = $("#negotiation_price_error");
+			var negotiationNumberOfGuestsError = $("#negotiation_number_of_guests_error");
+
+			if (negotiationPrice.val() < 0 || negotiationNumberOfGuests.val() <= 0) {
+				// if the price is negative or the number of guests in less than or equal to zero
+				if (parseInt(negotiationPrice.val()) < 0) {
+					negotiationPriceError.text("Enter a value greater than 0");
+					negotiationPrice.css("border", "solid 1px red");
+				} else {
+					negotiationPriceError.text("");
+					negotiationPrice.css("border", "");
 				}
-			});
+				if (parseInt(negotiationNumberOfGuests.val()) <= 0) {
+					negotiationNumberOfGuestsError.text("Enter a valid number");
+					negotiationNumberOfGuests.css("border", "solid 1px red");
+				} else {
+					negotiationNumberOfGuestsError.text("");
+					negotiationNumberOfGuests.css("border", "");
+				}
+			} else{
+				negotiationPriceError.text("");
+				negotiationNumberOfGuestsError.text("");
+			
+				$.ajax({
+					url: '{% url "apply" %}', 
+					method: "get",
+					data: {
+						'flat': "{{ object.hash }}", 
+						'negotiation_price': negotiationPrice.val(),
+						"negotiation_number_of_guests": negotiationNumberOfGuests.val(),
+					}, 
+					dataType: 'json', 
+					success: function(data) {
+						if(data.applied){
+							console.log(data.applied);
+							$("#apply-status-message-div").text("Successfully applied for the flat.");
+							$("#apply-status-message-div").css("display", "block");
+							$("#apply-status-message-div").removeClass("alert-danger");
+							$("#apply-status-message-div").addClass("alert-success");
+						} else if (data.previouslyApplied) {
+							$("#apply-status-message-div").text("You have already applied for the flat.");
+							$("#apply-status-message-div").css("display", "block");
+							$("#apply-status-message-div").addClass("alert-danger");
+							$("#apply-status-message-div").removeClass("alert-success");
+						}
+					}
+				});
+			}
 		});
 	})
 </script>

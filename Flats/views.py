@@ -56,12 +56,12 @@ class FlatDetailsView(DetailView):
 		context.update({
 			'images': files_list,
 		})
-
 		if not self.request.user.is_authenticated:
 			context.update({
 				"login_form": UserLoginForm(), 
 				"signup_form": UserSignupForm(), 
 			})
+		
 		return context
 
 	def get_object(self):
@@ -134,10 +134,29 @@ class FlatApplyView(View):
 	
 	def get(self, request, *args, **kwargs):
 		if self.request.user.is_authenticated:
-			if 'flat' in self.request.GET:
+			if 'flat' in self.request.GET and 'negotiation_price' in self.request.GET and 'negotiation_number_of_guests' in self.request.GET:
 				try:
 					flat = FlatDetails.objects.get(hash=self.request.GET['flat'])
-					application, created = FlatApplication.objects.get_or_create(user=self.request.user, flat=flat)
+					negotiation_price = self.request.GET['negotiation_price'] 
+					negotiation_number_of_guests = self.request.GET['negotiation_number_of_guests']
+					
+					if not negotiation_price: 
+						negotiation_price = flat.price
+					
+					if not negotiation_number_of_guests:
+						negotiation_number_of_guests = flat.number_of_guests
+
+					created = False
+					try:
+						application = FlatApplication.objects.get(
+							user=self.request.user, 
+							flat=flat, 
+							negotiation_price=negotiation_price, 
+							negotiation_number_of_guests=negotiation_number_of_guests
+						)
+						created = True
+					except ObjectDoesNotExist: 
+						pass
 					
 					if(created):
 						return JsonResponse({

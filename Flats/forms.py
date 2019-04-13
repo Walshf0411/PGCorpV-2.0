@@ -92,9 +92,3 @@ class FlatPostForm(forms.ModelForm):
     class Meta:
         fields = ['title', 'address', 'description', 'total_space', 'total_rent', 'deposit', 'possession', 'total_rooms', 'property_type', 'floor', 'parking_options', 'number_of_guests', 'images']
         model = FlatDetails
-
-class FlatApplyForm(forms.ModelForm):
-    
-    class Meta:
-        model = FlatApplication
-        fields = ['negotiation_price', 'negotiation_number_of_guests']
