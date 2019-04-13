@@ -43,8 +43,17 @@ class FavouriteFlats(models.Model):
 class FlatApplication(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	flat = models.ForeignKey(FlatDetails, on_delete=models.CASCADE)
+	negotiation_price = models.IntegerField(
+		default=0,
+		validators=(MinValueValidator(limit_value=100), ), 
+		help_text="Enter the total rent that you wish to have"
+	)
+	negotiation_number_of_guests = models.IntegerField(
+		default=1,
+		validators=(MinValueValidator(limit_value=1), ), 
+		help_text="Enter the total rent that you wish to have"
+	)
 	allowed_user = models.BooleanField(default=False)
 
 class FlatImage(models.Model):
-	flat = models.ForeignKey(FlatDetails, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to="flat_images/")
