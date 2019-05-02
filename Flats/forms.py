@@ -1,5 +1,5 @@
 from django import forms
-from .models import FlatDetails
+from .models import FlatDetails, FlatApplication
 
 PROPERTY_CHOICES = (
     (("Apartment/Flat"), ("Apartment/Flat")), 
