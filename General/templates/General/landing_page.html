@@ -22,15 +22,37 @@
 <body>
 	{% load static %}
 	<div class="pimg1" id ="pimg1">
-		<div class="overlay"></div>
-		<div class="parallax-text-wrapper">
-			<div class="animate" id="animate1">
-				<span id="parallax-title" >PGCORP</span>
+		<div id="demo" class="carousel slide" data-ride="carousel">
+
+			<!-- Indicators -->
+			<ul class="carousel-indicators">
+			  <li data-target="#demo" data-slide-to="0" class="active"></li>
+			  <li data-target="#demo" data-slide-to="1"></li>
+			  <li data-target="#demo" data-slide-to="2"></li>
+			</ul>
+		  
+			<!-- The slideshow -->
+			<div class="carousel-inner">
+			  <div class="carousel-item active">
+				<img src="{% static 'General/parallax-background.jpg' %}" width='100%' alt="Los Angeles">
+			  </div>
+			  <div class="carousel-item">
+				<img src="{% static 'General/parallax-background.jpg' %}" width="100%" alt="Chicago">
+			  </div>
+			  <div class="carousel-item">
+				<img src="{% static 'General/parallax-background.jpg' %}" width="100%" alt="New York">
+			  </div>
 			</div>
-			<div class="animate" id="animate2">
-				<span id="parallax-subtitle" class="animate">Many call it a City Of Dreams,so why not give it a dream start?</span>
-			</div>
-		</div>
+		  
+			<!-- Left and right controls -->
+			<a class="carousel-control-prev" href="#demo" data-slide="prev">
+			  <span class="carousel-control-prev-icon"></span>
+			</a>
+			<a class="carousel-control-next" href="#demo" data-slide="next">
+			  <span class="carousel-control-next-icon"></span>
+			</a>
+		  
+		  </div>
 	</div>
 
 	<section class="section-light">
@@ -103,23 +125,23 @@
 			scrollTop : 0                       
 		}, 700);
 	});
-	window.onscroll = function() {
-		if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
-			// show the navbar
-			$("#navbar").css("top", "0px");
-			$("#return-top").css("opacity", 1);
-		} else {
-			// hide the navbar margin top na haaa ek min ruk
-			var navbarHeight = 0 - $("#navbar").outerHeight();
-			$("#navbar").css("top", navbarHeight.toString() + "px");
-			$("#return-top").css("opacity", 0);
-		}//same effect hon chahiye
-		$('.progress-indicator').css("margin-top", $('#navbar').outerHeight());
-		var winscroll = document.body.scrollTop || document.documentElement.scrollTop;
-		var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-		var scrolled = (winscroll/height) * 100;
-		document.getElementById('mybar').style.width = scrolled + "%";
-	}
+	// window.onscroll = function() {
+	// 	if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+	// 		// show the navbar
+	// 		$("#navbar").css("top", "0px");
+	// 		$("#return-top").css("opacity", 1);
+	// 	} else {
+	// 		// hide the navbar margin top na haaa ek min ruk
+	// 		var navbarHeight = 0 - $("#navbar").outerHeight();
+	// 		$("#navbar").css("top", navbarHeight.toString() + "px");
+	// 		$("#return-top").css("opacity", 0);
+	// 	}//same effect hon chahiye
+	// 	$('.progress-indicator').css("margin-top", $('#navbar').outerHeight());
+	// 	var winscroll = document.body.scrollTop || document.documentElement.scrollTop;
+	// 	var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+	// 	var scrolled = (winscroll/height) * 100;
+	// 	document.getElementById('mybar').style.width = scrolled + "%";
+	// }
 </script>
 <script type="text/javascript">
 	var status = "{{ show_notif }}";
