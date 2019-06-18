@@ -11,10 +11,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'General/landing_page.css' %}">
 <style>
-	.pimg1{
-		/* internal css to be done for all images that have to be referenced like this */
-		background-image: url("{% static 'General/parallax-background.jpg' %}");
-	}
+	
 </style>
 {% endblock %}
 
@@ -22,48 +19,80 @@
 <body>
 	{% load static %}
 	<div class="pimg1" id ="pimg1">
-		<div id="demo" class="carousel slide" data-ride="carousel">
-
-			<!-- Indicators -->
-			<ul class="carousel-indicators">
-			  <li data-target="#demo" data-slide-to="0" class="active"></li>
-			  <li data-target="#demo" data-slide-to="1"></li>
-			  <li data-target="#demo" data-slide-to="2"></li>
-			</ul>
-		  
-			<!-- The slideshow -->
-			<div class="carousel-inner">
-			  <div class="carousel-item active">
-				<img src="{% static 'General/parallax-background.jpg' %}" width='100%' alt="Los Angeles">
-			  </div>
-			  <div class="carousel-item">
-				<img src="{% static 'General/parallax-background.jpg' %}" width="100%" alt="Chicago">
-			  </div>
-			  <div class="carousel-item">
-				<img src="{% static 'General/parallax-background.jpg' %}" width="100%" alt="New York">
-			  </div>
-			</div>
-		  
-			<!-- Left and right controls -->
-			<a class="carousel-control-prev" href="#demo" data-slide="prev">
-			  <span class="carousel-control-prev-icon"></span>
-			</a>
-			<a class="carousel-control-next" href="#demo" data-slide="next">
-			  <span class="carousel-control-next-icon"></span>
-			</a>
-		  
-		  </div>
+		<img src="{% static 'General/landing_page_image.jpg' %} " width=100% alt="this is the landing image" id="landing">
 	</div>
 
 	<section class="section-light">
-		<div class="search-box">
-			<!-- enter the url accordingly -->
-			<form action="#" class="search">
-				<input type="text" class="search-field" placeholder="Location search" autofocus>
-				<button type="button" class="btn btn-info" id ="search-button">
-					<i class="glyphicon glyphicon-search"></i>
-				</button>
-			</form>
+		<div id="demo" class="carousel slide" data-ride="carousel">
+
+				<!-- Indicators -->
+				<ul class="carousel-indicators">
+					<li data-target="#demo" data-slide-to="0" class="active"></li>
+					<li data-target="#demo" data-slide-to="1"></li>
+					<li data-target="#demo" data-slide-to="2"></li>
+				</ul>
+				<!-- The slideshow -->
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<div class="testimonial_content">
+							<div class="testimonials">
+								<!-- In future get the reviews here from customers now just keep the testimonials static  -->
+								<p align="center">
+									<strong> Name of the person </strong>
+									<p><img src="{% static 'General/landing_page_image.jpg' %}" class="rounded-circle" width="150px" height="150px" alt="this will be a image of the person"></p>
+									<div class="testimonial_review" >
+										<p>
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda maxime quos, architecto amet culpa ad expedita nihil quas exercitationem
+										</p>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- END OF DIV 1 -->
+					<div class="carousel-item">
+						<div class="testimonial_content">
+							<div class="testimonials">
+								<!-- In future get the reviews here from customers now just keep the testimonials static  -->
+								<p align="center">
+									<strong> Name of the person </strong>
+									<p><img src="{% static 'General/landing_page_image.jpg' %}" class="rounded-circle" width="150px" height="150px" alt="this will be a image of the person"></p>
+									<div class="testimonial_review" >
+										<p>
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda maxime quos, architecto amet culpa ad expedita nihil quas exercitationem
+										</p>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- END OF DIV 2 -->
+					<div class="carousel-item">
+						<div class="testimonial_content">
+							<div class="testimonials">
+								<!-- In future get the reviews here from customers now just keep the testimonials static  -->
+								<p align="center">
+									<strong> Name of the person </strong>
+									<p><img src="{% static 'General/landing_page_image.jpg' %}" class="rounded-circle" width="150px" height="150px" alt="this will be a image of the person"></p>
+									<div class="testimonial_review" >
+										<p>
+											Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda maxime quos, architecto amet culpa ad expedita nihil quas exercitationem
+										</p>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- END OF DIV 3 -->
+				</div>
+				<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#demo" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#demo" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>		
+		</div>				  
 		</div>
 	</section>
 	<section class="section-light">
