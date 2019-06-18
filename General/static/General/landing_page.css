@@ -120,6 +120,13 @@ body,html{
     color:#666; 
 }
 
+.section-light input{
+    align:center;
+    margin:0 auto;
+    width: 53%;
+}
+
+
 .top_liked{
     width: 100%;
     padding:2%;
