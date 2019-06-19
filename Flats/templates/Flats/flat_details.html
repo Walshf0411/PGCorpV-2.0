@@ -113,7 +113,7 @@
 								
 						<!-- Indicators -->
 						<ul class="carousel-indicators">
-							{% for i in object.flatimages_set.all %}
+							{% for i in object.images.all %}
 								{% if forloop.counter0 == 0 %}
 									<li data-target="#demo" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
 								{% else %}
@@ -125,7 +125,7 @@
 						<!-- The slideshow -->
 						<!-- please insert appropriate images !!! -->
 						<div class="carousel-inner">
-							{% for image_obj in object.flatimage_set.all %}
+							{% for image_obj in object.images.all %}
 								{% if forloop.counter0 == 0 %}
 									<div class="carousel-item active">
 										<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
