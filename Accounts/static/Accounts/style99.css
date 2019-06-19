@@ -64,6 +64,11 @@ body {
   margin-top: 30px;
 }
 
+.scrolled{
+  background-color: rgba(0, 0, 0,0.7) !important;
+	transition: background-color 200ms ease-in;
+}
+
 .profile-usermenu ul{
   display : block;
 }
