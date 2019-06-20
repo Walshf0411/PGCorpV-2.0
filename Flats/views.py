@@ -134,48 +134,50 @@ class FlatApplyView(View):
 	
 	def get(self, request, *args, **kwargs):
 		if self.request.user.is_authenticated:
-			if 'flat' in self.request.GET and 'negotiation_price' in self.request.GET and 'negotiation_number_of_guests' in self.request.GET:
-				try:
-					flat = FlatDetails.objects.get(hash=self.request.GET['flat'])
+			try:
+				# Get the flat details object for the page
+				flat = FlatDetails.objects.get(hash=self.request.GET['flat'])
+				
+				negotiation_price = flat.total_rent
+				negotiation_number_of_guests = flat.number_of_guests
+
+				if 'negotiation_price' in self.request.GET:
 					negotiation_price = self.request.GET['negotiation_price'] 
+				
+				if 'negotiation_number_of_guests' in self.request.GET:
 					negotiation_number_of_guests = self.request.GET['negotiation_number_of_guests']
-					
-					if not negotiation_price: 
-						negotiation_price = flat.price
-					
-					if not negotiation_number_of_guests:
-						negotiation_number_of_guests = flat.number_of_guests
 
-					created = False
-					try:
-						application = FlatApplication.objects.get(
-							user=self.request.user, 
-							flat=flat, 
-							negotiation_price=negotiation_price, 
-							negotiation_number_of_guests=negotiation_number_of_guests
-						)
-						created = True
-					except ObjectDoesNotExist: 
-						pass
-					
-					if(created):
-						return JsonResponse({
-							'applied': True, 
-						})
-					else:
-						return JsonResponse({
-							'previouslyApplied': True, 
-						}) 
-				except ObjectDoesNotExist:
+				created = False
+				try:
+					application = FlatApplication.objects.get(
+						user=self.request.user, 
+						flat=flat, 
+						negotiation_price=negotiation_price, 
+						negotiation_number_of_guests=negotiation_number_of_guests
+					)
+					created = True
+				except ObjectDoesNotExist: 
+					pass
+				
+				if(created):
 					return JsonResponse({
-						'applied': False, 
+						'applied': True, 
 					})
-
+				else:
+					return JsonResponse({
+						'previouslyApplied': True, 
+					}) 
+			except ObjectDoesNotExist:
+				return JsonResponse({
+					'applied': False, 
+				})
+				
 class FlatApplicationsList(ListView):
 	template_name = 'Flats/flat_application_list.html'
 	context_object_name = 'flat_applications'
 
 	def get_context_data(self, *args, **kwargs):
+		# get the flat details for the requested flat.
 		context = super().get_context_data()
 		hash = self.kwargs['hash']
 		flat = FlatDetails.objects.get(hash=hash)
@@ -185,6 +187,9 @@ class FlatApplicationsList(ListView):
 		return context
 
 	def get_queryset(self):
+		# get the hash from the request
 		hash = self.kwargs['hash']
+		# get the flat having this hash.
 		flat = FlatDetails.objects.get(hash=hash)
+		# retrieve all flat applications containing 
 		return FlatApplication.objects.filter(flat=flat)
