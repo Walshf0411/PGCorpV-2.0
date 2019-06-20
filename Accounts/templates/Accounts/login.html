@@ -7,6 +7,16 @@
 <link rel="stylesheet" href="{% static 'Accounts/login.css' %}">
 {% endblock %}
 
+{% block javascript %}
+	<script>
+		$(document).ready(function () {
+			$("#navbar").removeClass("navbar-dark");
+			$("#navbar").addClass("navbar-light");
+		} );
+	</script>
+	
+{% endblock %}
+
 {% block content %}
 	<div class="container" id="form-absolute-container">
 		<div class="row">

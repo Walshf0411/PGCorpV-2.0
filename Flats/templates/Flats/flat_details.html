@@ -276,6 +276,8 @@
 {% block javascript %}
 <script>
 	$(document).ready(function() {
+		$("#navbar").removeClass("navbar-dark");
+		$("#navbar").addClass("navbar-light");
 		$("#like-button-wrapper").click(function() {
 			$.ajax({
 				url: '{% url "like" %}',

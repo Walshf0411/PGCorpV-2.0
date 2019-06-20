@@ -96,6 +96,11 @@
 
 {% block javascript %}
     <script>
+        $(document).ready(function(){
+            $("#navbar").removeClass("navbar-dark");
+			$("#navbar").addClass("navbar-light");
+        });
+
         function showHiddenDetails(displayID) {
             var hiddenElement = $('#' + displayID)
             if (hiddenElement.css('display') == 'block') {

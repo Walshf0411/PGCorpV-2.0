@@ -20,177 +20,76 @@
 
 </head>
 <!-- Navbar code goes here -->
-<nav class="navbar navbar-expand-sm bg-light navbar-light" id="navbar" role="navigation">
-	<a href="{% url 'land_page' %}" class="navbar-brand">PGCORP</a>
-
-	<button class="navbar-toggler" type="button" data-target="#collapseNavbar" data-toggle="collapse">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div id="collapseNavbar" class="collapse navbar-collapse">
-		<ul class="navbar-nav">
-			
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'land_page' %}">Home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">About Us</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'all_flats' %}">Rent a flat</a>
-			</li>
-			{% if user.pgcorp_user.user_type == 1 %}
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'post' %}">Post a flat</a>
-			</li>
-			{% endif %}
-		</ul>
-		<!--Items to the right of the navbar-->
-		<ul class="navbar-nav ml-auto">
-		{% if not user.is_authenticated %}
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'login' %}">Login</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'signup' %}">Signup</a>
-			</li>
-			{% else %}
-			<div class="dropdown">
-				<buttton class="dropdown-toggle btn" data-toggle="dropdown">
-					Welcome, {{user}}
-				</buttton>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a>
-					<a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a>
+<nav class="navbar navbar-expand-sm navbar-dark" id="navbar" role="navigation">
+	<div class="container">
+		<a href="{% url 'land_page' %}" class="navbar-brand">PGCORP</a>
+	
+		<button class="navbar-toggler" type="button" data-target="#collapseNavbar" data-toggle="collapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div id="collapseNavbar" class="collapse navbar-collapse">
+			<ul class="navbar-nav">
+				
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'land_page' %}">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">About Us</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'all_flats' %}">Rent a flat</a>
+				</li>
+				{% if user.pgcorp_user.user_type == 1 %}
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'post' %}">Post a flat</a>
+				</li>
+				{% endif %}
+			</ul>
+			<!--Items to the right of the navbar-->
+			<ul class="navbar-nav ml-auto">
+			{% if not user.is_authenticated %}
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'signup' %}">Signup</a>
+				</li>
+				{% else %}
+				<div class="dropdown">
+					<buttton class="dropdown-toggle btn" data-toggle="dropdown">
+						Welcome, {{user}}
+					</buttton>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a>
+						<a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a>
+					</div>
 				</div>
-			</div>
-		{% endif %}
-		</ul>	
-	</div>	
+			{% endif %}
+			</ul>	
+		</div>	
+	</div>
 </nav>
-
+			
 <!-- Navbar ends here -->
 
+
 <body>
+
+<script>
+	$(document).ready(function() {
+		$(window).scroll(function () {
+			var $nav = $("#navbar");
+    		$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+		});
+	});
+</script>
+
 {% block content %}
 {% endblock %}
 </body>
-<footer>
-	<div id="footer-wrapper">
-		<div id="footer" class="container">
-			<div class="row">
-				<div class="col-sm-3" id="footer-logo" align="center">
-					<div id="logo-text" class="display-4">PGCORP</div>
-				</div>
-				<div class="col-sm-2">
-					<h5 class="footer-heading">Useful Links</h5>
-					<ul class="footer-ul">
-						<li class="footer-link-li">
-							<a href="#" class="footer-link">Rent a flat</a>
-						</li>
-						<li class="footer-link-li">
-							<a href="#" class="footer-link ">Post a flat</a>
-						</li>
-						<li class="footer-link-li">
-							<a href="#" class="footer-link" >Rent a flat</a>
-						</li>
-						<li class="footer-link-li">
-							<a href="#" class="footer-link" >Rent a flat</a>
-						</li>	
-					</ul>
-				</div>
-				<div class="col-sm-2">
-					<h5 class="footer-heading">User actions</h5>
-					<ul class="footer-ul">
-						<li class="footer-link-li">
-							<a href="{% url 'login'%}" class="footer-link" >Login</a>
-						</li>
-						<li>
-							<a href="{% url 'signup' %}" class="footer-link" >Register</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col-sm-3">
-					<h5 class="footer-heading">Team Members</h5>
-					<ul class="footer-ul">
-						<li class="footer-link-li">Walsh Fernandes</li>
-						<li class="footer-link-li">Rahul Nandrajog</li>
-						<li class="footer-link-li">Aniket Shinde</li>
-						<li class="footer-link-li">Harsh Motwani</li>
-					</ul>
-				</div>
-				<div class="col-sm-2">
-					<h5 class="footer-heading">Follow us on</h5>
-					<a href="#" style="padding: 5px"><i class="fab fa-facebook fa-3x"></i></a>
-					<a href="#" style="padding: 3px"><i class="fab fa-twitter fa-3x"></i></a>
-					<a href="#" style="padding: 3px"><i class="fab fa-instagram fa-3x"></i></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
 
 </html>
-<script type="text/javascript">
-	// this is the script that generates suggestions for the search bar
-	$("#search").focus(function() {
-		// when the search bar is focuesed, the dropdown pops up
-		$(".results-dropdown").show();
-	});
-	$("#search").focusout(function() {
-		// when the focus is out from the search bar and the search has no 
-		// value in it, hide the dropdown
-		if(!$(".results-dropdown").val())
-			$(".results-dropdown").hide();
-	});
-	$(".results-dropdown").change(function() {
-		// on selection of an option from the dropdown
-		// the value in the text box changes
-		var string = $("select option:selected").text();
-		$("#search").val(string);
-	});
-	$("#search").keyup(function() {
-		// grab the search bar 
-		var search = $("#search");
 
-		if(search.val().length == 0) {
-			// if user clears the search bar, empty the suggestions
-			$('.results-dropdown').html("");
-		}else{
-			// if there is something in the search bar do a ajax request
-			$.ajax({
-				// url to request data from
-				url: "{% url 'ajax-search' %}",
-				// data to be passed in the request
-				data: {
-					'data': search.val(),
-				}, 
-				// datatype of the response data 
-				dataType: 'json',
-				// function to be executed on success
-				success: function(data) {
-					// extract the array from the json response
-					var searchArray = data.results;
-					var links = data.links;
-					// just an intermediate string variable to store the intermediate html
-					var selectHtml;
-					// if we receive any data, i. e the data entered in the search box
-					// matches something in the databaase, we show suggestions
-					if(searchArray.length > 0)
-						for (var i = 0; i < searchArray.length; i++) {
-							// here we create the option tags by taking the values fetched from the 
-							// db and thne check whether it already exists in the dropdown
-							// if exists we don't add it, else we add it to the select box
-							selectHtml = '<option value="'+searchArray[i]+'">'+searchArray[i]+'</option>';
-							if(!$('.results-dropdown').html().includes(selectHtml))
-								$('.results-dropdown').prepend(selectHtml);
-						}
-					else
-						$('.results-dropdown').html("");
-				}
-			});
-		}
-	});
-</script>
 {% block javascript %}
 
 {% endblock %}

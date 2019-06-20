@@ -238,7 +238,11 @@
 
 {% block javascript %}
 	<script>
+
 		$(document).ready(function() {
+			$("#navbar").removeClass("navbar-dark");
+			$("#navbar").addClass("navbar-light");
+
 			$("#profile_picture_dummy").click(function(){
 				$("#profile_pic_upload").click();
 			});

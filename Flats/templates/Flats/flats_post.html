@@ -8,11 +8,11 @@
 
 {% block content %}
 <div class="container" id="main-container">
-	<h1 class="display-4" id="title">Post a flat for free.</h1>
+	<h1 id="title">Post a flat for free.</h1>
 	<p>
 		Enter the details for the flat you wish to post to <strong>Paying Guests</strong>. Enter accurate details to attract Paying guests to view your flat.
 	</p>	
-	<div class="container" id="form-container">
+	<div>
 		<form action="{% url 'post' %}" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			{% load crispy_forms_tags %}
@@ -55,16 +55,21 @@
 					</div>
 				</div>
 				{{ form.images|as_crispy_field}}
-				
-			<button type="submit" class="btn btn-info btn-lg">Submit</button>
+				<div class="col-md-6 offset-md-3" id="submit_button">
+					<button type="submit" class="btn btn-info btn-lg">Submit</button>
+				</div>
+			</div>
 		</form>		
 	</div>
 </div>
 {% endblock %}
 {% block javascript %}
+
 <script>
 	$(document).ready(function() {
-
+		$("#navbar").removeClass("navbar-dark");
+		$("#navbar").addClass("navbar-light");
+		
 		function checkIfExists(array, element) {
 			for (i=0; i < array.length; i++ ) {
 				if (array[i] == element) {

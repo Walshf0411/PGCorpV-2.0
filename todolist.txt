@@ -6,7 +6,18 @@ TODO LIST FOR PGCORP
 5. Search using location feature
 6. Search using filters.
 7. Stabilize HTML, in all pages(most of the pages are distorted.)
+    - flat view (small)
+    - flat details
+    - mail templates
+    - take like on page 1
+    - posted flats 
+    - navbar black !-IMPORTANT
 
+
+
+TODO for EMS
+- admin side ui
+- 
 
 
 

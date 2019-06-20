@@ -4,6 +4,12 @@
 #form-absolute-container{
     margin-bottom: 20px;
 }
+
+.scrolled{
+	background-color: rgba(0, 0, 0,0.7) !important;
+	transition: background-color 200ms ease-in;
+}
+
 /* This is to remove unnecessary spacing between the text and the form*/
 @media (max-width:600px) {
     #login_text{
