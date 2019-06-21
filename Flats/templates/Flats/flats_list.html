@@ -15,7 +15,7 @@
 	-->
 	<div class="container" id="flats-wrapper">
 		<div class="row">
-			<div class="col-sm-3">
+			<div class="col-md-3 col-sm-12">
 				<div id="accordion">
 					<div class="card">
 						<div class="card-header">
@@ -74,7 +74,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-9 flats">
+			<div class="col-md-9 col-sm-10 flats">
 				{% if is_paginated %}
 				<ul class="pagination">
 					{% if page_obj.has_previous %}
@@ -111,75 +111,84 @@
 				</ul>
 				{% endif %}
 				
-				{% for flat in flats %}
-				<div class="flat">
-					<div class="row">
-						<div  id="carousel_edit">
-							<div id="demo" class="carousel slide" data-ride="carousel">
-								<!-- Indicators -->
-								<ul class="carousel-indicators">
-									{% for i in flat.images.all %}
-										{% if forloop.counter0 == 0 %}
-											<li data-target="#demo" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
-										{% else %}
-											<li data-target="#demo" data-slide-to="{{ forloop.counter0 }}" ></li>
-										{% endif %}
-									{% endfor %}
-								</ul>
-								
-								<!-- The slideshow -->
-								<!-- please insert appropriate images !!! -->
-								<div class="carousel-inner">
-									{% for image_obj in flat.images.all %}
-										{% if forloop.counter0 == 0 %}
-											<div class="carousel-item active">
-												<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" >
-												<div class="bottom-left"><strong>{{ flat.title }} </strong></div>
-												<div class="address-left"><strong>{{ flat.address }}</strong></div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						{% for flat in flats %}
+						<div class="flat">
+							<div class="row">
+								<div class="col-md-12 col-sm-12" style="">
+									<div  id="carousel_edit">
+										<div id="demo" class="carousel slide" data-ride="carousel">
+											<!-- Indicators -->
+											<ul class="carousel-indicators">
+												{% for i in flat.images.all %}
+													{% if forloop.counter0 == 0 %}
+														<li data-target="#demo" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+													{% else %}
+														<li data-target="#demo" data-slide-to="{{ forloop.counter0 }}" ></li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+											
+											<!-- The slideshow -->
+											<!-- please insert appropriate images !!! -->
+											<div class="carousel-inner">
+												{% for image_obj in flat.images.all %}
+													{% if forloop.counter0 == 0 %}
+														<div class="carousel-item active">
+															<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" >
+															<div class="bottom-left"><strong>{{ flat.title }} </strong></div>
+															<div class="address-left"><strong>{{ flat.address }}</strong></div>
+														</div>
+													{% else %}
+													<div class="carousel-item">
+														<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%">
+														<div class="bottom-left"><strong>{{ flat.title }} </strong></div>
+														<div class="address-left"><strong>{{ flat.address }}</strong></div>
+													</div>
+													{% endif %}
+												{% endfor %}
 											</div>
-										{% else %}
-										<div class="carousel-item">
-											<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%">
-											<div class="bottom-left"><strong>{{ flat.title }} </strong></div>
-											<div class="address-left"><strong>{{ flat.address }}</strong></div>
+											
+											<!-- Left and right controls -->
+											<a class="carousel-control-prev" href="#demo" data-slide="prev">
+												<span class="carousel-control-prev-icon"></span>
+											</a>
+											<a class="carousel-control-next" href="#demo" data-slide="next">
+												<span class="carousel-control-next-icon"></span>
+											</a>
 										</div>
-										{% endif %}
-									{% endfor %}
-								</div>
-								
-								<!-- Left and right controls -->
-								<a class="carousel-control-prev" href="#demo" data-slide="prev">
-									<span class="carousel-control-prev-icon"></span>
-								</a>
-								<a class="carousel-control-next" href="#demo" data-slide="next">
-									<span class="carousel-control-next-icon"></span>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-10 offset-md-1 layout">
-							<div class="row">
-								<div class="col-md-1 col-sm-2 icon"><i class="fas fa-bed"></i></div>
-								<div class="col-md-4 col-sm-10 label">Number of rooms : {{ flat.total_rooms }}</div>
-								<div class="col-md-1 offset-md-1 col-sm-2  icon"><i class="fas fa-home"></i></div>
-								<div class="col-md-4 col-sm-10 label">Total area : {{flat.total_space}} </div>
+									</div>
+								</div>	
 							</div>
 							<div class="row">
-								<div class="col-md-1 col-sm-2 icon"><i class="fas fa-parking"></i></div>
-								<div class="col-md-4 col-sm-10 label">Parkings : {{ flat.parking_options }}</div>
-								<div class="col-md-1 offset-md-1 col-sm-2 icon"><i class="fas fa-key"></i></div>
-								<div class="col-md-4 col-sm-10 label">Position {{flat.possession}} </div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 offset-md-3 col-sm-6 ">
-									<a class="btn btn-lg btn-info" id="button" href="{% url 'flat_detail' flat.hash flat.slug %}">View More</a>
+								<div class="col-md-10 offset-md-1 layout">
+									<div class="row hide_small">
+										<div class="col-md-1 col-sm-2 icon" id="start"><i class="fas fa-bed"></i></div>
+										<div class="col-md-4 col-sm-10 label" id="label">Number of rooms : {{ flat.total_rooms }}</div>
+										<div class="col-md-1 offset-md-1 col-sm-2  icon"><i class="fas fa-home"></i></div>
+										<div class="col-md-4 col-sm-10 label">Total area : {{flat.total_space}} </div>
+									</div>
+									<div class="row hide_small">
+										<div class="col-md-1 col-sm-2 icon"><i class="fas fa-parking"></i></div>
+										<div class="col-md-4 col-sm-10 label">Parkings : {{ flat.parking_options }}</div>
+										<div class="col-md-1 offset-md-1 col-sm-2 icon"><i class="fas fa-key"></i></div>
+										<div class="col-md-4 col-sm-10 label">Possession {{flat.possession}} </div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 offset-md-2 col-sm-6 offset-sm-3 col-6 offset-3">
+											<a class="btn btn-lg btn-info button" href="{% url 'flat_detail' flat.hash flat.slug %}">View More</a>
+										</div>
+										<div class="col-md-2 offset-md-1 col-sm-2 col-2 offset-5 button">
+											<a class="btn btn-danger button" href="" ><i class="far fa-heart" id="like"></i></a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+						{% endfor %}
 					</div>
 				</div>
-				{% endfor %}
 				{% if is_paginated %}
 				<ul class="pagination">
 					{% if page_obj.has_previous %}
@@ -225,6 +234,11 @@
  {% block javascript %}
 	<script>
 		$(document).ready(function(){
+			$("#like").click(function(){
+				$("#like").removeClass("far fa-heart");
+				$("#like").addClass("fas fa-heart");
+			});
+			
 			$("#navbar").removeClass("navbar-dark");
 			$("#navbar").addClass("navbar-light");
 			if (window.screen.width <= 600) {
