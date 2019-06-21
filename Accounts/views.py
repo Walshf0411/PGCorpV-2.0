@@ -82,7 +82,7 @@ class UserProfileView(TemplateView):
 		if self.request.user.is_authenticated:
 			if self.request.user.pgcorp_user.user_type == User_Type.HOUSE_OWNER:
 				flats_posted = FlatDetails.objects.filter(user=self.request.user).order_by("-date_of_posting")
-				paginator = Paginator(flats_posted, 7)
+				paginator = Paginator(flats_posted, 2)
 				flats_posted = paginator.page(1)
 
 				if 'page' in self.request.GET: 

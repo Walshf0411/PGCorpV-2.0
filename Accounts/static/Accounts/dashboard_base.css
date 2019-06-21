@@ -1,7 +1,18 @@
+@media (min-width: 768px) {
+  .flats-wrapper{
+    width: 100%;  
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .flat-container {
+    margin-right: 2%;
+  }
+}
 body {
   background: #F1F3FA;
 }
-
 
 .profile {
   margin: 20px 0;
@@ -180,17 +191,11 @@ body {
   color: white;
 }
 
-.flats-wrapper{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .flat-container{
     margin-bottom: 3%;
     border-radius: 2%;
     background-color: rgba(255, 255, 255, 0.8);
-    flex-basis: 23%;
+    flex-basis: 21%;
 }
 .flat-container:hover{
 	box-shadow: 0px 0px 15px #cccccc;

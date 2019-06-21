@@ -21,7 +21,6 @@
         </span>
     </div>
     -->
-    {% if is_paginated %}
     <ul class="pagination">
         {% if flats.has_previous %}
             <li class="page-item">
@@ -55,7 +54,7 @@
                 </li>
         {% endif %}
     </ul>
-    {% endif %}
+    
 
     {% load custom_tags %}
     
@@ -115,8 +114,13 @@
                 <strong>Applications: </strong>{{flat.flatapplication_set.count}}<br/><br/>
                 
                 <div class="container" align=center style="padding-bottom: 3px;">
-                    <a class="btn btn-outline-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View on Site</a>
+                    <a class="btn btn-outline-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View on Site</a><br><br>
+                    {% if flat.flatapplication_set.count == 0 %}
+                    <a class="btn btn-outline-success" href="#">View all applications</a>
+                    {% else %}
                     <a class="btn btn-outline-success" href="{% url 'flat_application_list' flat.hash flat.slug %}">View all applications</a>
+                    {% endif %}
+                    
                 </div>
 
             </div>
