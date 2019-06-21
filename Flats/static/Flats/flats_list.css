@@ -1,8 +1,8 @@
 .flat{
     width: 100%;
-    background: rgba(255, 255, 255,0.8);
     margin-bottom: 3%;
     border-radius: 2%;
+    background-color: rgba(255, 255, 255, 0.8)
 }
 
 .flat:hover{
@@ -16,6 +16,15 @@
 .row{
     margin-bottom:2%;
 }
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 2%;
+}
 
 .carousel-inner img{
     border-radius:2%;
@@ -23,15 +32,18 @@
     margin:0 auto;
     max-width: 100%;
     opacity: 0.7;
+    z-index: 1000;
 }
 
 .carousel-inner{
     position: relative;
+
 }
 
 .bottom-left {
+    font-size: 1.5em;
     position: absolute;
-    bottom: 20%;
+    bottom: 25%;
     left: 10%;
     color: white;
 }
@@ -39,7 +51,7 @@
 
 .address-left {
     position: absolute;
-    bottom: 12%;
+    bottom: 5%;
     left: 10%;
     color: white;
 }
