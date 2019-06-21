@@ -1,0 +1,32 @@
+<div class="container">
+<h1>Applied Flats</h1>
+<div class="pagination">
+    <span class="step-links">
+
+        {% if flats.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ flats.previous_page_number }}">previous</a>
+        {% endif %}	
+        
+        <span class="current">
+            Page {{ flats.number }} of {{ flats.paginator.num_pages }}.
+        </span>
+    
+        {% if flats.has_next %}
+        <a href="?page={{ flats.next_page_number }}">next</a>
+        <a href="?page={{ flats.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+
+    </span>
+</div>
+{% for flat_application in flats %}
+<div class="flat-container">
+    <h3>{{flat_application.flat.title|title}}</h3>
+    <div align="center">
+        <a class="btn btn-info" href="{% url 'flat_detail' flat_application.flat.hash flat_application.flat.slug %}">View on site</a>
+    </div>
+</div>
+{% empty %}
+    no flats Applied
+{% endfor %}
+</div>

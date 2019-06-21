@@ -4,7 +4,7 @@
 
 {% block cssfiles %}
 {% load static %}
-<link rel="stylesheet" href= "{% static 'Accounts/style99.css' %}" >
+<link rel="stylesheet" href= "{% static 'Accounts/dashboard_base.css' %}" >
 {% endblock %}
 
 {% block content %}
@@ -75,139 +75,13 @@
 		<div class="tab-content col-md-9">
 			<div class="tab-pane active" id="flats">
 				
-				<!-- for flat owneres -->	
+				<!-- for flat owners -->	
 				{% if request.user.pgcorp_user.user_type == 1 %}
-				<div class="container">
-					<h1>Posted Flats</h1>
-					<div class="pagination">
-						<span class="step-links">
-							
-							{% if flats.has_previous %}
-							<a href="?page=1">&laquo; first</a>
-							<a href="?page={{ flats.previous_page_number }}">previous</a>
-							{% endif %}
-
-							<span class="current">
-								Page {{ flats.number }} of {{ flats.paginator.num_pages }}.
-							</span>
-							
-							{% if flats.has_next %}
-							<a href="?page={{ flats.next_page_number }}">next</a>
-							<a href="?page={{ flats.paginator.num_pages }}">last &raquo;</a>
-							{% endif %}
-							
-						</span>
-					</div>
-					
-					{% load custom_tags %}
-					
-					{% for flat in flats %}
-						{% if forloop.counter0|mod:3 == 0 %}
-						<div class="row" style="margin-top: 6px;">
-						{% endif %}
-						
-						<div class="col-sm-4">
-							<div class="flat-container">
-								<div id="demo" class="carousel slide" data-ride="carousel">
-										
-									<!-- Indicators -->
-									<ul class="carousel-indicators">
-										{% for i in flat.images.all %}
-											{% if forloop.counter0 == 0 %}
-												<li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
-											{% else %}
-												<li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" ></li>
-											{% endif %}
-										{% endfor %}
-									</ul>
-									
-									<!-- The slideshow -->
-									<!-- please insert appropriate images !!! -->
-									<div class="carousel-inner">
-										{% for image_obj in flat.images.all %}
-											{% if forloop.counter0 == 0 %}
-												<div class="carousel-item active">
-													<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
-												</div>
-											{% else %}
-											<div class="carousel-item">
-												<img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
-											</div>
-											{% endif %}
-										{% endfor %}
-										<div class="overlay"></div>
-										<div class="title">{{flat.title|title}}</div>
-									</div>
-									
-									<!-- Left and right controls -->
-									<a class="carousel-control-prev" href="#demo" data-slide="prev">
-										<span class="carousel-control-prev-icon"></span>
-									</a>
-									<a class="carousel-control-next" href="#demo" data-slide="next">
-										<span class="carousel-control-next-icon"></span>
-									</a>
-								</div>
-
-								<div style="margin:2px;"> 
-									<p>
-										{{flat.address}}
-									</p>
-									<br>
-									<strong>Number of applications: </strong>{{flat.flatapplication_set.count}}
-									
-									<div class="container" align=center style="padding-bottom: 3px;">
-										<a class="btn btn-outline-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View on Site</a>
-										<a class="btn btn-outline-success" href="{% url 'flat_application_list' flat.hash flat.slug %}">View all applications</a>
-									</div>
-
-								</div>
-								
-							</div>
-						</div>
-					
-						{% if forloop.counter0|mod:3 == 2 or forloop.counter0 == flats|length|subtract:1 %}
-						</div>
-						{% endif %}
-					{% empty %}
-					<h1>No flats posted</h1>
-					{% endfor %}
-
-				</div>
+				{% include 'Accounts/dashboard_flat_list_owner.html' %}
 				
 				<!-- for paying guests. -->
 				{% elif request.user.pgcorp_user.user_type == 2 %}
-				<div class="container">
-					<h1>Applied Flats</h1>
-					<div class="pagination">
-						<span class="step-links">
-
-							{% if flats.has_previous %}
-							<a href="?page=1">&laquo; first</a>
-							<a href="?page={{ flats.previous_page_number }}">previous</a>
-							{% endif %}	
-							
-							<span class="current">
-								Page {{ flats.number }} of {{ flats.paginator.num_pages }}.
-							</span>
-						
-							{% if flats.has_next %}
-							<a href="?page={{ flats.next_page_number }}">next</a>
-							<a href="?page={{ flats.paginator.num_pages }}">last &raquo;</a>
-							{% endif %}
-
-						</span>
-					</div>
-					{% for flat_application in flats %}
-					<div class="flat-container">
-						<h3>{{flat_application.flat.title|title}}</h3>
-						<div align="center">
-							<a class="btn btn-info" href="{% url 'flat_detail' flat_application.flat.hash flat_application.flat.slug %}">View on site</a>
-						</div>
-					</div>
-					{% empty %}
-						no flats Applied
-					{% endfor %}
-				</div>
+				{% include 'Accounts/dashboard_flat_list_payingguest.html' %}
 				{% endif %}
         </div>
 			

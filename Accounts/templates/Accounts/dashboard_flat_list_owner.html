@@ -1,0 +1,132 @@
+<div class="container">
+    <h1>Posted Flats</h1>
+    <!--
+    <div class="pagination">
+        <span class="step-links">
+            
+            {% if flats.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ flats.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ flats.number }} of {{ flats.paginator.num_pages }}.
+            </span>
+            
+            {% if flats.has_next %}
+            <a href="?page={{ flats.next_page_number }}">next</a>
+            <a href="?page={{ flats.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+            
+        </span>
+    </div>
+    -->
+    {% if is_paginated %}
+    <ul class="pagination">
+        {% if flats.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ flats.previous_page_number }}">&laquo;</a>
+            </li>
+        {% else %}
+            <li class="disabled page-item" >
+                <a class="page-link"><span>&laquo;</span></a>
+            </li>
+        {% endif %}
+        
+        {% for i in flats.paginator.page_range %}
+            {% if flats.number == i %}
+                <li class="active page-item">
+                    <a class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        
+        {% if flats.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ flats.next_page_number }}">&raquo;</a>
+            </li>
+        {% else %}
+            <li class="disabled page-item">
+                <a class="page-link"><span>&raquo;</span></a>
+                </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+
+    {% load custom_tags %}
+    
+    <!-- Main wrapper container for all flat containers-->
+    <div class="flats-wrapper">
+    
+    {% for flat in flats %}
+
+        <div class="flat-container">
+            <!-- Carousel -->
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                    
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    {% for i in flat.images.all %}
+                        {% if forloop.counter0 == 0 %}
+                            <li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+                        {% else %}
+                            <li data-target="#{{flat.id}}" data-slide-to="{{ forloop.counter0 }}" ></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                
+                <!-- The slideshow -->
+                <!-- please insert appropriate images !!! -->
+                <div class="carousel-inner">
+                <div class="overlay"></div>
+                    {% for image_obj in flat.images.all %}
+                        {% if forloop.counter0 == 0 %}
+                            <div class="carousel-item active">
+                                <img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
+                                <div class="bottom-left">{{flat.title|title}}</div>
+                            </div>
+                        {% else %}
+                        <div class="carousel-item">
+                            <img src="{{ image_obj.image.url }}" alt="Los Angeles" width="100%" height="100%">
+                            <div class="bottom-left">{{flat.title|title}}</div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div></div>
+                </div>  
+                
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+            <div class="other-details container"> 
+                <p>
+                    <div class="address"><strong>Address:</strong>{{flat.address}}</div>
+                </p>
+                <strong>Applications: </strong>{{flat.flatapplication_set.count}}<br/><br/>
+                
+                <div class="container" align=center style="padding-bottom: 3px;">
+                    <a class="btn btn-outline-info" href="{% url 'flat_detail' flat.hash flat.slug %}">View on Site</a>
+                    <a class="btn btn-outline-success" href="{% url 'flat_application_list' flat.hash flat.slug %}">View all applications</a>
+                </div>
+
+            </div>
+            
+        </div>
+
+    {% empty %}
+        <h1>No flats posted</h1>
+    {% endfor %}
+    
+    </div>
+
+</div>
