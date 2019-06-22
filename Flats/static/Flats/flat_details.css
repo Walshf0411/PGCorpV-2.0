@@ -1,4 +1,87 @@
-.card{
+#main-container{
+	background-color: rgba(255,255,255,0.8);
+	margin:0 auto;
+	margin-top:1%;
+	width: 80%;
+	border-radius: 2%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 2%;
+}
+
+
+.icon{
+    border-radius:2%;
+    padding:2%;
+    background-color: #ccc;
+    border:1px solid rgba(0, 0, 0, 0.4);
+}
+
+.label{
+    border-radius:2%;
+    padding:2%;
+    border:1px solid rgba(0, 0, 0, 0.4);
+    border-left: none;
+}
+
+.carousel-inner img{
+    border-radius:2%;
+    max-height:70vh;
+    margin:0 auto;
+    opacity: 0.7;
+    z-index: 1000;
+}
+
+.image-gallery{
+	padding: 0;
+	margin-bottom: 2%;
+}
+
+.carousel-inner{
+    position: relative;
+
+}
+
+
+.bottom-left {
+    position: absolute;
+    bottom: 25%;
+    left: 10%;
+    color: white;
+}
+
+
+.address-left {
+    position: absolute;
+    bottom: 15%;
+    left: 10%;
+    color: white;
+}
+
+#flat_details{
+	margin-bottom: 1%;
+}
+
+.main-items{
+	margin-right:1%;
+}
+
+.more-details{
+	margin-right:4%;
+}
+
+#payment_details{
+	margin-bottom: 1%;
+}
+
+/* .card{
 	margin:5% 12% 0 12%;	
 }
 #main-container {
@@ -42,4 +125,4 @@
 }
 #user-actions-div{
 	margin-top: 15px;
-}
+} */
