@@ -74,11 +74,22 @@
 }
 
 .more-details{
-	margin-right:4%;
+	margin-right:8%;
+}
+
+
+.description-div{
+	margin-right:2%;
 }
 
 #payment_details{
 	margin-bottom: 1%;
+}
+
+@media (max-width: 600px) {
+	.more-details{
+		margin-right:0;
+	}
 }
 
 /* .card{
